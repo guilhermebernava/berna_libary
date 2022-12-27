@@ -1,10 +1,12 @@
 import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_events.dart';
 import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_states.dart';
-import 'package:berna_libary/design/fonts/app_fonts.dart';
+import 'package:berna_libary/modules/splash/domain/interfaces/i_animation_use_case.dart';
+import 'package:berna_libary/modules/splash/domain/use_cases/animation_use_case.dart';
+import 'package:berna_libary/modules/splash/presenters/widgets/animated_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   final Bloc<AppThemeEvents, AppThemeStates> bloc;
   const SplashPage({
     super.key,
@@ -12,26 +14,30 @@ class SplashPage extends StatelessWidget {
   });
 
   @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+  late final IAnimationUseCase animationUseCase;
+  @override
+  void initState() {
+    super.initState();
+    animationUseCase = AnimationUseCase(ticket: this);
+    animationUseCase.playAnimation(mounted);
+    //TODO adidiconar redirecionamento para próxima tela
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationUseCase.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              "teste",
-              style: AppFonts.basicFont,
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              bloc.add(ChangeAppTheme());
-            },
-            child: const Text(
-              "Change THEME",
-            ),
-          )
-        ],
+      body: AnimatedSplash(
+        animationUseCase: animationUseCase,
       ),
     );
   }
