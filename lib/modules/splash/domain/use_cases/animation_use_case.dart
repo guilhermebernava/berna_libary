@@ -63,9 +63,13 @@ class AnimationUseCase implements IAnimationUseCase {
   }
 
   @override
-  void playAnimation(bool isMounted) {
+  void playAnimation(bool isMounted, void Function() redirect) {
     if (isMounted) {
-      transformController.forward().then((_) => controller.forward());
+      transformController.forward().then(
+            (_) => controller.forward().then(
+                  (_) => redirect(),
+                ),
+          );
     }
   }
 

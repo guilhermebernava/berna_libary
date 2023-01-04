@@ -7,5 +7,5 @@ abstract class IAnimationUseCase implements Disposable {
   late final AnimationController transformController;
   late final Animation<Alignment> transformAnimation;
 
-  void playAnimation(bool isMounted);
+  void playAnimation(bool isMounted, void Function() redirect);
 }
