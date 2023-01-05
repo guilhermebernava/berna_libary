@@ -23,6 +23,9 @@ class ObscureTextWidget extends StatelessWidget {
                   : Icons.remove_red_eye_rounded,
             ),
           )
-        : Container();
+        : const SizedBox(
+            width: 0,
+            height: 0,
+          );
   }
 }
