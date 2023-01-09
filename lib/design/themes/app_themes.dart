@@ -5,7 +5,7 @@ class AppTheme {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.black,
     colorScheme: const ColorScheme.dark(),
-    primaryColor: AppColors.darkPrimary,
+    primaryColor: AppColors.primary,
     brightness: Brightness.dark,
   );
   static final lightTheme = ThemeData(

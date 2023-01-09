@@ -19,6 +19,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   dartz: ^0.10.1
   google_fonts: ^3.0.1
+  font_awesome_flutter: ^10.3.0
 
 dev_dependencies:
   flutter_test:
@@ -33,3 +34,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/animations/
+    - assets/images/

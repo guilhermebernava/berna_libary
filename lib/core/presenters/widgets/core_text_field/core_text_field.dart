@@ -53,17 +53,19 @@ class _CoreTextFieldState extends State<CoreTextField> {
 
   @override
   Widget build(BuildContext context) {
-    const double circular = 8;
+    const double circular = 50;
     final themeColor =
         themesServices.isDarkTheme(context) ? AppColors.white : AppColors.black;
 
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
       child: TextFormField(
         initialValue: widget.initialValue,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: widget.controller,
         decoration: InputDecoration(
+          filled: true,
+          fillColor: AppColors.grey,
           errorStyle: AppTextFormFieldsFonts.textformFieldError,
           hintStyle: AppTextFormFieldsFonts.hintTextFont,
           hintText: widget.hintText,

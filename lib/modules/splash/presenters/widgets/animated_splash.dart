@@ -22,7 +22,7 @@ class AnimatedSplash extends StatelessWidget {
             child: const Icon(
               Icons.music_note_sharp,
               size: 50,
-              color: AppColors.primary,
+              color: AppColors.secundary,
             ),
           ),
         ),
