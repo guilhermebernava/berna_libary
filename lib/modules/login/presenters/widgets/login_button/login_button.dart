@@ -41,17 +41,19 @@ class _LoginButtonState extends State<LoginButton>
     );
 
     isLoading.addListener(() {
-      setState(() {
-        _child = isLoading.value
-            ? const CircularProgressIndicator(
-                color: AppColors.white,
-                strokeWidth: 4,
-              )
-            : Text(
-                "LOGIN",
-                style: AppLoginButtonFonts.loginButton,
-              );
-      });
+      if (mounted) {
+        setState(() {
+          _child = isLoading.value
+              ? const CircularProgressIndicator(
+                  color: AppColors.white,
+                  strokeWidth: 4,
+                )
+              : Text(
+                  "LOGIN",
+                  style: AppLoginButtonFonts.loginButton,
+                );
+        });
+      }
     });
   }
 
@@ -88,12 +90,11 @@ class _LoginButtonState extends State<LoginButton>
                   },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width:
-                  isLoading.value ? widget.size.width * 0.3 : widget.size.width,
+              width: isLoading.value ? 70 : widget.size.width,
               child: Container(
                 height: 60,
                 decoration: BoxDecoration(
-                  color: AppColors.primary,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(
                     100,
                   ),

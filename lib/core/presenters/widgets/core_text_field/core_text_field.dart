@@ -64,8 +64,6 @@ class _CoreTextFieldState extends State<CoreTextField> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: widget.controller,
         decoration: InputDecoration(
-          filled: true,
-          fillColor: AppColors.grey,
           errorStyle: AppTextFormFieldsFonts.textformFieldError,
           hintStyle: AppTextFormFieldsFonts.hintTextFont,
           hintText: widget.hintText,

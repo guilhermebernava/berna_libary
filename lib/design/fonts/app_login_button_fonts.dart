@@ -1,9 +1,11 @@
+import 'package:berna_libary/design/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppLoginButtonFonts {
   static final loginButton = GoogleFonts.roboto(
     fontSize: 20,
+    color: AppColors.white,
     fontWeight: FontWeight.w600,
   );
 

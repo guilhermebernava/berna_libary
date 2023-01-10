@@ -9,7 +9,7 @@ class AppTextFormFieldsFonts {
   );
   static final forgotYourPassword = GoogleFonts.roboto(
     fontSize: 12,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
   );
   static final textformFieldTextFont = GoogleFonts.roboto(
     fontSize: 18,

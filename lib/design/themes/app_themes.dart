@@ -1,4 +1,5 @@
 import 'package:berna_libary/design/colors/app_colors.dart';
+import 'package:berna_libary/design/fonts/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -10,7 +11,10 @@ class AppTheme {
   );
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.white,
-    colorScheme: const ColorScheme.light(),
+    colorScheme: const ColorScheme.light(primary: AppColors.black),
+    textTheme: TextTheme(
+      button: AppFonts.basicFont,
+    ),
     primaryColor: AppColors.primary,
     brightness: Brightness.light,
   );
