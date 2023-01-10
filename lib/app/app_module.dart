@@ -12,7 +12,7 @@ class AppModule extends Module {
   List<Bind<Object>> get binds => [
         BlocBind.singleton(
           (i) => AppThemeBloc(
-            ThemeMode.system,
+            ThemeMode.dark,
           ),
         ),
         Bind(

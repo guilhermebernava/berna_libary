@@ -1,13 +1,14 @@
 import 'dart:ui';
 import 'package:berna_libary/core/presenters/widgets/core_text_field/core_text_field.dart';
 import 'package:berna_libary/core/presenters/widgets/form_with_key/form_with_key.dart';
+import 'package:berna_libary/core/presenters/widgets/theme_button.dart';
 import 'package:berna_libary/modules/login/domain/interfaces/i_login_use_case.dart';
+import 'package:berna_libary/modules/login/presenters/widgets/background_login.dart';
 import 'package:berna_libary/modules/login/presenters/widgets/login_button/login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rive/rive.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   final ILoginUseCase useCase;
 
   const LoginPage({
@@ -16,47 +17,35 @@ class LoginPage extends StatefulWidget {
   });
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    StateMachineController? stateMachineController;
 
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
-          //TODO adicionar botao para mudar DARKMODE
-          RiveAnimation.asset(
-            'assets/background.riv',
-            fit: BoxFit.fill,
-            onInit: (art) {
-              stateMachineController =
-                  StateMachineController.fromArtboard(art, "state")!;
-
-              if (stateMachineController == null) {
-                return;
-              }
-              art.addController(stateMachineController!);
-            },
-          ),
+          const BackgroundLogin(),
           BackdropFilter(
             filter: ImageFilter.blur(
               sigmaX: 3.0,
               sigmaY: 3.0,
             ),
             child: FormWithKey(
-              formKey: widget.useCase.formKey,
+              formKey: useCase.formKey,
               children: [
-                SizedBox(
-                  height: size.height * 0.15,
+                Align(
+                  alignment: const Alignment(-0.9, 2),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      bottom: size.height * 0.1,
+                    ),
+                    child: const ThemeButton(),
+                  ),
                 ),
-                const Icon(
+                Icon(
                   FontAwesomeIcons.userAstronaut,
                   size: 150,
+                  color: Theme.of(context).iconTheme.color,
                 ),
                 SizedBox(
                   height: size.height * 0.05,
@@ -80,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 LoginButton(
                   size: size,
-                  useCase: widget.useCase,
+                  useCase: useCase,
                 )
               ],
             ),

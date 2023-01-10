@@ -12,6 +12,9 @@ class AppTheme {
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.white,
     colorScheme: const ColorScheme.light(primary: AppColors.black),
+    iconTheme: const IconThemeData(
+      color: AppColors.primary,
+    ),
     textTheme: TextTheme(
       button: AppFonts.basicFont,
     ),
