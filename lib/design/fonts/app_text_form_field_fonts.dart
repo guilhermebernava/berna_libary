@@ -16,7 +16,7 @@ class AppTextFormFieldsFonts {
     fontWeight: FontWeight.w500,
   );
   static final textformFieldError = GoogleFonts.roboto(
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: FontWeight.w500,
     color: AppColors.red,
   );

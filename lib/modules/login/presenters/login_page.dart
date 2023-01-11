@@ -33,11 +33,14 @@ class LoginPage extends StatelessWidget {
             child: FormWithKey(
               formKey: useCase.formKey,
               children: [
+                SizedBox(
+                  height: size.height * 0.04,
+                ),
                 Align(
-                  alignment: const Alignment(-0.9, 2),
+                  alignment: const Alignment(-0.9, 0),
                   child: Padding(
                     padding: EdgeInsets.only(
-                      bottom: size.height * 0.1,
+                      bottom: size.height * 0.05,
                     ),
                     child: const ThemeButton(),
                   ),
@@ -54,18 +57,20 @@ class LoginPage extends StatelessWidget {
                   title: "Email",
                   obscureText: false,
                   hintText: "teste@teste.com",
-                  validator: (p0) => "erro no email",
+                  onChanged: (value) => useCase.loginModel.email(value),
+                  validator: (_) => useCase.loginModel.email.validator(),
                 ),
                 CoreTextField(
                   title: "Senha",
                   counterText: "Forgot your password ?",
-                  onCounterTap: () {},
+                  onCounterTap: () => useCase.redirectToRecoverPassword(),
                   obscureText: true,
-                  validator: (p0) => "erro na senha",
+                  onChanged: (value) => useCase.loginModel.password(value),
+                  validator: (_) => useCase.loginModel.password.validator(),
                   hintText: "********",
                 ),
                 SizedBox(
-                  height: size.height * 0.03,
+                  height: size.height * 0.07,
                 ),
                 LoginButton(
                   size: size,

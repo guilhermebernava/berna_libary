@@ -3,6 +3,7 @@ import 'package:berna_libary/design/fonts/app_login_button_fonts.dart';
 import 'package:berna_libary/modules/login/domain/interfaces/i_login_use_case.dart';
 import 'package:berna_libary/modules/login/presenters/widgets/login_button/widgets/login_text_button.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginButton extends StatefulWidget {
   final Size size;
@@ -21,7 +22,31 @@ class LoginButton extends StatefulWidget {
 class _LoginButtonState extends State<LoginButton>
     with TickerProviderStateMixin {
   final ValueNotifier<bool> isLoading = ValueNotifier(false);
+  final ValueNotifier<bool> hasError = ValueNotifier(false);
   late Widget _child;
+
+//WIDGETS
+  final textButton = Text(
+    "LOGIN",
+    style: AppLoginButtonFonts.loginButton,
+  );
+  final loading = const CircularProgressIndicator(
+    color: AppColors.white,
+    strokeWidth: 4,
+  );
+  final error = const Icon(
+    FontAwesomeIcons.x,
+    size: 30,
+    color: AppColors.red,
+  );
+
+  void _changeError() {
+    if (mounted) {
+      setState(() {
+        hasError.value = !hasError.value;
+      });
+    }
+  }
 
   void _changeLoading() {
     if (mounted) {
@@ -34,24 +59,22 @@ class _LoginButtonState extends State<LoginButton>
   @override
   void initState() {
     super.initState();
+    _child = textButton;
 
-    _child = Text(
-      "LOGIN",
-      style: AppLoginButtonFonts.loginButton,
-    );
+    hasError.addListener(() async {
+      if (mounted && hasError.value) {
+        _child = error;
+        await Future.delayed(const Duration(milliseconds: 2500), () {
+          _changeError();
+          _child = textButton;
+        });
+      }
+    });
 
     isLoading.addListener(() {
       if (mounted) {
         setState(() {
-          _child = isLoading.value
-              ? const CircularProgressIndicator(
-                  color: AppColors.white,
-                  strokeWidth: 4,
-                )
-              : Text(
-                  "LOGIN",
-                  style: AppLoginButtonFonts.loginButton,
-                );
+          _child = isLoading.value ? loading : textButton;
         });
       }
     });
@@ -61,6 +84,7 @@ class _LoginButtonState extends State<LoginButton>
   void dispose() {
     super.dispose();
     isLoading.dispose();
+    hasError.dispose();
   }
 
   @override
@@ -72,20 +96,16 @@ class _LoginButtonState extends State<LoginButton>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: isLoading.value == true
+            onTap: isLoading.value || hasError.value
                 ? () {}
-                : () {
+                : () async {
                     _changeLoading();
-                    // widget.useCase.validateFormInputs().then((value) {
-                    //   if (mounted) {
-                    //     setState(() {
-                    //       isLoading = false;
-                    //     });
-                    //   }
-                    // });
-
-                    Future.delayed(const Duration(seconds: 3), () {
+                    widget.useCase.validateFormInputs().then((value) {
                       _changeLoading();
+                      if (value != null && value == false) {
+                        _changeError();
+                        return;
+                      }
                     });
                   },
             child: AnimatedContainer(

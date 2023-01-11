@@ -16,7 +16,7 @@ class FormWithKey extends StatelessWidget {
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: children,
       ),

@@ -20,10 +20,12 @@ class CoreTextField extends StatefulWidget {
   final String? hintText;
   final String? counterText;
   final VoidCallback? onCounterTap;
+  final void Function(String)? onChanged;
 
   const CoreTextField({
     super.key,
     required this.title,
+    required this.onChanged,
     this.initialValue,
     this.controller,
     this.formatters,
@@ -63,6 +65,7 @@ class _CoreTextFieldState extends State<CoreTextField> {
         initialValue: widget.initialValue,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: widget.controller,
+        onChanged: widget.onChanged,
         decoration: InputDecoration(
           errorStyle: AppTextFormFieldsFonts.textformFieldError,
           hintStyle: AppTextFormFieldsFonts.hintTextFont,
