@@ -24,6 +24,7 @@ class _LoginButtonState extends State<LoginButton>
   final ValueNotifier<bool> isLoading = ValueNotifier(false);
   final ValueNotifier<bool> hasError = ValueNotifier(false);
   late Widget _child;
+  Color _color = AppColors.primary;
 
 //WIDGETS
   final textButton = Text(
@@ -37,7 +38,7 @@ class _LoginButtonState extends State<LoginButton>
   final error = const Icon(
     FontAwesomeIcons.x,
     size: 30,
-    color: AppColors.red,
+    color: AppColors.white,
   );
 
   void _changeError() {
@@ -45,6 +46,16 @@ class _LoginButtonState extends State<LoginButton>
       setState(() {
         hasError.value = !hasError.value;
       });
+    }
+  }
+
+  void _changeColor() {
+    if (mounted) {
+      if (hasError.value) {
+        _color = AppColors.red;
+      } else {
+        _color = AppColors.primary;
+      }
     }
   }
 
@@ -63,9 +74,11 @@ class _LoginButtonState extends State<LoginButton>
 
     hasError.addListener(() async {
       if (mounted && hasError.value) {
+        _changeColor();
         _child = error;
-        await Future.delayed(const Duration(milliseconds: 2500), () {
+        await Future.delayed(const Duration(milliseconds: 1500), () {
           _changeError();
+          _changeColor();
           _child = textButton;
         });
       }
@@ -109,18 +122,18 @@ class _LoginButtonState extends State<LoginButton>
                     });
                   },
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 400),
               width: isLoading.value ? 70 : widget.size.width,
               child: Container(
                 height: 60,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
+                  color: _color,
                   borderRadius: BorderRadius.circular(
                     100,
                   ),
                 ),
                 child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 400),
+                  duration: const Duration(milliseconds: 800),
                   child: _child,
                 ),
               ),

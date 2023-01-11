@@ -16,7 +16,7 @@ class LoginModule extends Module {
             recoverPasswordRoute: RecoverPasswordModule.moduleRoute,
             signUpRoute: SignUpModule.moduleRoute,
           ),
-        )
+        ),
       ];
 
   @override
