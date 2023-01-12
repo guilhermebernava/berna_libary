@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class FormWithKey extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final List<Widget> children;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
 
   const FormWithKey({
     super.key,
     required this.children,
     required this.formKey,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.mainAxisAlignment = MainAxisAlignment.start,
   });
 
   @override
@@ -16,8 +20,8 @@ class FormWithKey extends StatelessWidget {
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
         children: children,
       ),
     );

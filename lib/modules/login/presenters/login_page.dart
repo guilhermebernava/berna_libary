@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
                   validator: (_) => useCase.loginModel.email.validator(),
                 ),
                 CoreTextField(
-                  title: "Senha",
+                  title: "Password",
                   counterText: "Forgot your password ?",
                   onCounterTap: () => useCase.redirectToRecoverPassword(),
                   obscureText: true,

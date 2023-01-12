@@ -10,7 +10,7 @@ class NotNull<T> implements ValueObject<T> {
 
   @override
   String? validator() {
-    if (_value == null) {
+    if (_value == null || _value.toString() == "") {
       return "value could not be null";
     }
 

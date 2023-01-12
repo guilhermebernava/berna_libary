@@ -24,12 +24,12 @@ class LoginUseCase implements ILoginUseCase {
   @override
   Future<bool?> login() async {
     await Future.delayed(const Duration(seconds: 3));
-    if (loginModel.email.value != "" && loginModel.password.value != "") {
-      return false;
+    if (loginModel.email.value == "g@g.com" &&
+        loginModel.password.value == "123456") {
+      Modular.to.navigate(homeRoute);
+      return true;
     }
-
-    Modular.to.navigate(homeRoute);
-    return true;
+    return false;
   }
 
   @override

@@ -5,13 +5,23 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.black,
+    backgroundColor: AppColors.black,
     colorScheme: const ColorScheme.dark(),
+    appBarTheme: const AppBarTheme(
+      color: Colors.transparent,
+      elevation: 0,
+    ),
     primaryColor: AppColors.primary,
     brightness: Brightness.dark,
   );
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.white,
     colorScheme: const ColorScheme.light(primary: AppColors.black),
+    backgroundColor: AppColors.white,
+    appBarTheme: const AppBarTheme(
+      color: Colors.transparent,
+      elevation: 0,
+    ),
     iconTheme: const IconThemeData(
       color: AppColors.primary,
     ),
