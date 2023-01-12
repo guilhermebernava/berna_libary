@@ -32,43 +32,10 @@ class CoreApiButtonUseCase implements ICoreApiButtonUseCase, Disposable {
   CoreApiButtonUseCase({
     required this.setState,
     required String text,
-    required bool mounted,
   }) {
     textButton = CoreApiButtonText(text: text);
     child = textButton;
     color = AppColors.primary;
-
-    isCorrect.addListener(() async {
-      if (mounted && isCorrect.value) {
-        changeColor(mounted);
-        child = correct;
-        await Future.delayed(const Duration(milliseconds: 1500), () {
-          changeCorrect(mounted);
-          changeColor(mounted);
-          child = textButton;
-        });
-      }
-    });
-
-    hasError.addListener(() async {
-      if (mounted && hasError.value) {
-        changeColor(mounted);
-        child = error;
-        await Future.delayed(const Duration(milliseconds: 1500), () {
-          changeError(mounted);
-          changeColor(mounted);
-          child = textButton;
-        });
-      }
-    });
-
-    isLoading.addListener(() {
-      if (mounted) {
-        setState(() {
-          child = isLoading.value ? loading : textButton;
-        });
-      }
-    });
   }
 
   @override

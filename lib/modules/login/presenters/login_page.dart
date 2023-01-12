@@ -54,8 +54,8 @@ class LoginPage extends StatelessWidget {
               height: size.height * 0.07,
             ),
             LoginButton(
-              size: size,
               useCase: useCase,
+              size: size,
             )
           ],
         ),

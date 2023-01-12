@@ -27,8 +27,40 @@ class _CoreApiButtonState extends State<CoreApiButton>
     useCase = CoreApiButtonUseCase(
       setState: setState,
       text: widget.text,
-      mounted: mounted,
     );
+
+    useCase.isCorrect.addListener(() async {
+      if (mounted && useCase.isCorrect.value) {
+        useCase.changeColor(mounted);
+        useCase.child = useCase.correct;
+        await Future.delayed(const Duration(milliseconds: 1500), () {
+          useCase.changeCorrect(mounted);
+          useCase.changeColor(mounted);
+          useCase.child = useCase.textButton;
+        });
+      }
+    });
+
+    useCase.hasError.addListener(() async {
+      if (mounted && useCase.hasError.value) {
+        useCase.changeColor(mounted);
+        useCase.child = useCase.error;
+        await Future.delayed(const Duration(milliseconds: 1500), () {
+          useCase.changeError(mounted);
+          useCase.changeColor(mounted);
+          useCase.child = useCase.textButton;
+        });
+      }
+    });
+
+    useCase.isLoading.addListener(() {
+      if (mounted) {
+        setState(() {
+          useCase.child =
+              useCase.isLoading.value ? useCase.loading : useCase.textButton;
+        });
+      }
+    });
   }
 
   @override

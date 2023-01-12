@@ -1,3 +1,4 @@
+import 'package:berna_libary/modules/home/home_module.dart';
 import 'package:berna_libary/modules/sign_up/domain/use_cases/sign_up_use_case.dart';
 import 'package:berna_libary/modules/sign_up/presenters/sign_up_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,7 +9,9 @@ class SignUpModule extends Module {
   @override
   List<Bind<Object>> get binds => [
         Bind(
-          (i) => SignUpUseCase(),
+          (i) => SignUpUseCase(
+            homeRoute: HomeModule.moduleRoute,
+          ),
         )
       ];
 

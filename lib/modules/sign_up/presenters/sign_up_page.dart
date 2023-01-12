@@ -2,6 +2,7 @@ import 'package:berna_libary/core/presenters/widgets/core_api_button/core_api_bu
 import 'package:berna_libary/core/presenters/widgets/core_back_button/core_back_button.dart';
 import 'package:berna_libary/core/presenters/widgets/core_text_field/core_text_field.dart';
 import 'package:berna_libary/core/presenters/widgets/form_with_key/form_with_key.dart';
+import 'package:berna_libary/core/services/snackbar/snackbar_services.dart';
 import 'package:berna_libary/modules/sign_up/domain/interfaces/i_sign_up_use_case.dart';
 import 'package:berna_libary/modules/sign_up/presenters/widgets/sign_up_background.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +30,6 @@ class SignUpPage extends StatelessWidget {
             ),
             const SizedBox(
               height: 30,
-            ),
-            CoreTextField(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-              title: "Name",
-              obscureText: false,
-              hintText: "John Example",
-              onChanged: (value) => useCase.model.name(value),
-              validator: (_) => useCase.model.name.validator(),
             ),
             CoreTextField(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
@@ -68,10 +61,13 @@ class SignUpPage extends StatelessWidget {
             CoreApiButton(
               text: "Sign Up",
               size: size,
-              onTap: () async {
-                await Future.delayed(const Duration(seconds: 3));
+              onTap: () async => await useCase.validateInputs().then((value) {
+                if (value != null) {
+                  SnackbarServices.showErrorSnackbar(context, value);
+                  return false;
+                }
                 return true;
-              },
+              }),
             ),
           ],
         ),

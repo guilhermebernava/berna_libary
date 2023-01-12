@@ -1,3 +1,5 @@
+import 'package:berna_libary/core/domain/interfaces/use_cases/i_auth_use_case.dart';
+import 'package:berna_libary/core/domain/use_cases/auth_use_case.dart';
 import 'package:berna_libary/modules/login/domain/interfaces/i_login_use_case.dart';
 import 'package:berna_libary/modules/login/domain/models/login_model.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,8 @@ class LoginUseCase implements ILoginUseCase {
   String recoverPasswordRoute;
   @override
   LoginModel loginModel = LoginModel.empty();
+  @override
+  final IAuthUseCase authUseCase = Modular.get<AuthUseCase>();
 
   LoginUseCase({
     required this.signUpRoute,
@@ -23,9 +27,13 @@ class LoginUseCase implements ILoginUseCase {
 
   @override
   Future<bool?> login() async {
-    await Future.delayed(const Duration(seconds: 3));
-    if (loginModel.email.value == "g@g.com" &&
-        loginModel.password.value == "123456") {
+    final isLogged = await authUseCase.login(
+      email: loginModel.email.value,
+      password: loginModel.password.value,
+    );
+
+    await Future.delayed(const Duration(seconds: 1));
+    if (isLogged.isRight()) {
       Modular.to.navigate(homeRoute);
       return true;
     }
