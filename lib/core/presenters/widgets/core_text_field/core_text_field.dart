@@ -21,22 +21,23 @@ class CoreTextField extends StatefulWidget {
   final String? counterText;
   final VoidCallback? onCounterTap;
   final void Function(String)? onChanged;
+  final EdgeInsets padding;
 
-  const CoreTextField({
-    super.key,
-    required this.title,
-    required this.onChanged,
-    this.initialValue,
-    this.controller,
-    this.formatters,
-    this.validator,
-    this.keyboardType,
-    this.hintText,
-    this.maxLines = 1,
-    this.obscureText = false,
-    this.counterText,
-    this.onCounterTap,
-  });
+  const CoreTextField(
+      {super.key,
+      required this.title,
+      required this.onChanged,
+      this.initialValue,
+      this.controller,
+      this.formatters,
+      this.validator,
+      this.keyboardType,
+      this.hintText,
+      this.maxLines = 1,
+      this.obscureText = false,
+      this.counterText,
+      this.onCounterTap,
+      this.padding = const EdgeInsets.symmetric(vertical: 5, horizontal: 25)});
 
   @override
   State<CoreTextField> createState() => _CoreTextFieldState();
@@ -55,12 +56,12 @@ class _CoreTextFieldState extends State<CoreTextField> {
 
   @override
   Widget build(BuildContext context) {
-    const double circular = 50;
+    const double circular = 15;
     final themeColor =
         themesServices.isDarkTheme(context) ? AppColors.white : AppColors.black;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+      padding: widget.padding,
       child: TextFormField(
         initialValue: widget.initialValue,
         autovalidateMode: AutovalidateMode.onUserInteraction,
