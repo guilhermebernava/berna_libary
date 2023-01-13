@@ -68,4 +68,53 @@ class AuthUseCase implements IAuthUseCase {
       );
     }
   }
+
+  @override
+  Future<Either<AuthError, void>> sendTokenToEmail(
+      {required String email}) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      return const Right(null);
+    } catch (e) {
+      return Left(
+        AuthError(
+          error: e.toString(),
+          message: "error in send token to email",
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<AuthError, void>> checkToken({required String token}) async {
+    try {
+      await auth.verifyPasswordResetCode(token);
+      return const Right(null);
+    } catch (e) {
+      return Left(
+        AuthError(
+          error: e.toString(),
+          message: "error in verifying token password",
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<AuthError, void>> resetPassword({
+    required String token,
+    required String password,
+  }) async {
+    try {
+      await auth.confirmPasswordReset(code: token, newPassword: password);
+      return const Right(null);
+    } catch (e) {
+      return Left(
+        AuthError(
+          error: e.toString(),
+          message: "error in reseting password",
+        ),
+      );
+    }
+  }
 }

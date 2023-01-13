@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FormWithKey extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
+  final Key formKey;
   final List<Widget> children;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;

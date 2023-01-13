@@ -1,6 +1,7 @@
 import 'package:berna_libary/core/presenters/widgets/core_api_button/interface/i_core_api_button_use_case.dart';
 import 'package:berna_libary/core/presenters/widgets/core_api_button/use_case/core_api_button_use_case.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CoreApiButton extends StatefulWidget {
   final Size size;
@@ -81,6 +82,7 @@ class _CoreApiButtonState extends State<CoreApiButton>
             onTap: useCase.isLoading.value || useCase.hasError.value
                 ? () {}
                 : () async {
+                    HapticFeedback.mediumImpact();
                     useCase.changeLoading(mounted);
                     widget.onTap().then((value) {
                       useCase.changeLoading(mounted);
