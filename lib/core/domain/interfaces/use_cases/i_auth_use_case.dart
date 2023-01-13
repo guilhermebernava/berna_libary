@@ -22,15 +22,7 @@ abstract class IAuthUseCase {
     required String password,
   });
 
-  Future<Either<AuthError, void>> sendTokenToEmail({
-    required String email,
-  });
-
-  Future<Either<AuthError, void>> checkToken({
-    required String token,
-  });
   Future<Either<AuthError, void>> resetPassword({
-    required String token,
-    required String password,
+    required String email,
   });
 }

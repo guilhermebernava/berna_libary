@@ -13,11 +13,9 @@ abstract class IRecoverPasswordUseCase {
     required this.loginRoute,
   });
 
-  Future<String?> validateEmail(GlobalKey<FormState> key);
-  Future<bool?> validateToken(GlobalKey<FormState> key);
-  Future<String?> changePassword(GlobalKey<FormState> key);
+  Future<String?> changePassword(
+      GlobalKey<FormState> key, BuildContext context);
 
+  Future<void> redirect();
   void clearEmail();
-  void clearPassword();
-  void clearToken();
 }

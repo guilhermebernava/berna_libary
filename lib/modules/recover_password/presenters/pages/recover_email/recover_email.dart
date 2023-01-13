@@ -49,8 +49,9 @@ class RecoverEmailPage extends StatelessWidget {
           ),
           CoreApiButton(
             size: size,
-            text: "Next",
-            onTap: () async => await useCase.validateEmail(key).then((value) {
+            text: "Send Token to Email",
+            onTap: () async =>
+                await useCase.changePassword(key, context).then((value) async {
               if (value != null) {
                 if (value.length < 2) {
                   return false;
@@ -61,7 +62,7 @@ class RecoverEmailPage extends StatelessWidget {
                 );
                 return false;
               }
-
+              await useCase.redirect();
               return true;
             }),
           ),
