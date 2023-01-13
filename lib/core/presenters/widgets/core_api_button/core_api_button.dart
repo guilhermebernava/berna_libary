@@ -2,10 +2,12 @@ import 'package:berna_libary/core/presenters/widgets/core_api_button/interface/i
 import 'package:berna_libary/core/presenters/widgets/core_api_button/use_case/core_api_button_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CoreApiButton extends StatefulWidget {
   final Size size;
   final String text;
+  final String? route;
   final Future<bool?> Function() onTap;
 
   const CoreApiButton({
@@ -13,6 +15,7 @@ class CoreApiButton extends StatefulWidget {
     required this.text,
     required this.size,
     required this.onTap,
+    this.route,
   });
 
   @override
@@ -84,7 +87,7 @@ class _CoreApiButtonState extends State<CoreApiButton>
                 : () async {
                     HapticFeedback.mediumImpact();
                     useCase.changeLoading(mounted);
-                    widget.onTap().then((value) {
+                    widget.onTap().then((value) async {
                       useCase.changeLoading(mounted);
                       if (value != null && value == false) {
                         useCase.changeError(mounted);
@@ -92,6 +95,11 @@ class _CoreApiButtonState extends State<CoreApiButton>
                       }
                       if (value != null && value == true) {
                         useCase.changeCorrect(mounted);
+                        if (widget.route != null) {
+                          await Future.delayed(const Duration(seconds: 2), () {
+                            Modular.to.navigate(widget.route!);
+                          });
+                        }
                         return;
                       }
                     });

@@ -2,7 +2,7 @@ import 'package:berna_libary/core/presenters/widgets/core_api_button/core_api_bu
 import 'package:berna_libary/core/presenters/widgets/core_back_button/core_back_button.dart';
 import 'package:berna_libary/core/presenters/widgets/core_text_field/core_text_field.dart';
 import 'package:berna_libary/core/presenters/widgets/form_with_key/form_with_key.dart';
-import 'package:berna_libary/core/services/snackbar/snackbar_services.dart';
+import 'package:berna_libary/core/services/validate_services/validate_services.dart';
 import 'package:berna_libary/modules/recover_password/domain/interfaces/i_recover_password_use_case.dart';
 import 'package:berna_libary/modules/recover_password/presenters/widgets/recover_password_background.dart';
 import 'package:flutter/material.dart';
@@ -49,22 +49,14 @@ class RecoverEmailPage extends StatelessWidget {
           ),
           CoreApiButton(
             size: size,
+            route: useCase.loginRoute,
             text: "Send Token to Email",
-            onTap: () async =>
-                await useCase.changePassword(key, context).then((value) async {
-              if (value != null) {
-                if (value.length < 2) {
-                  return false;
-                }
-                SnackbarServices.showErrorSnackbar(
-                  context,
-                  value,
-                );
-                return false;
-              }
-              await useCase.redirect();
-              return true;
-            }),
+            onTap: () async => await useCase.changePassword(key, context).then(
+                  (string) => ValidateServices.validateFutureString(
+                    string,
+                    context,
+                  ),
+                ),
           ),
         ],
       ),

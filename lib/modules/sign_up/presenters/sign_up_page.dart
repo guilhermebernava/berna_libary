@@ -2,7 +2,7 @@ import 'package:berna_libary/core/presenters/widgets/core_api_button/core_api_bu
 import 'package:berna_libary/core/presenters/widgets/core_back_button/core_back_button.dart';
 import 'package:berna_libary/core/presenters/widgets/core_text_field/core_text_field.dart';
 import 'package:berna_libary/core/presenters/widgets/form_with_key/form_with_key.dart';
-import 'package:berna_libary/core/services/snackbar/snackbar_services.dart';
+import 'package:berna_libary/core/services/validate_services/validate_services.dart';
 import 'package:berna_libary/modules/sign_up/domain/interfaces/i_sign_up_use_case.dart';
 import 'package:berna_libary/modules/sign_up/presenters/widgets/sign_up_background.dart';
 import 'package:flutter/material.dart';
@@ -61,13 +61,10 @@ class SignUpPage extends StatelessWidget {
             CoreApiButton(
               text: "Sign Up",
               size: size,
-              onTap: () async => await useCase.validateInputs().then((value) {
-                if (value != null) {
-                  SnackbarServices.showErrorSnackbar(context, value);
-                  return false;
-                }
-                return true;
-              }),
+              onTap: () async => await useCase.validateInputs().then(
+                    (value) =>
+                        ValidateServices.validateFutureString(value, context),
+                  ),
             ),
           ],
         ),

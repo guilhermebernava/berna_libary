@@ -43,7 +43,7 @@ class SignUpUseCase implements ISignUpUseCase {
     }
 
     if (formKey.currentState!.validate() == false) {
-      return null;
+      return "";
     }
 
     if (CheckPasswordServices.confirmPassword(
