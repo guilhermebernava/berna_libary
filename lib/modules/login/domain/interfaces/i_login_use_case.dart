@@ -1,6 +1,9 @@
+import 'package:berna_libary/core/blocs/app_user_bloc/app_user_events.dart';
+import 'package:berna_libary/core/blocs/app_user_bloc/app_user_states.dart';
 import 'package:berna_libary/core/domain/interfaces/use_cases/i_auth_use_case.dart';
 import 'package:berna_libary/modules/login/domain/models/login_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class ILoginUseCase {
   final GlobalKey<FormState> formKey;
@@ -8,6 +11,7 @@ abstract class ILoginUseCase {
   final String recoverPasswordRoute;
   final String signUpRoute;
   final LoginModel loginModel;
+  final Bloc<AppUserEvents, AppUserStates> appUserBloc;
   final IAuthUseCase authUseCase;
 
   ILoginUseCase({
@@ -17,6 +21,7 @@ abstract class ILoginUseCase {
     required this.homeRoute,
     required this.recoverPasswordRoute,
     required this.authUseCase,
+    required this.appUserBloc,
   });
 
   Future<bool?> validateFormInputs();

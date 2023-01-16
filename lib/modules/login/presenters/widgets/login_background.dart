@@ -20,8 +20,6 @@ class LoginBackground extends StatefulWidget {
 }
 
 class _LoginBackgroundState extends State<LoginBackground> {
-  StateMachineController? stateMachineController;
-  SMIInput<bool>? isDark;
   final appBloc = Modular.get<Bloc<AppThemeEvents, AppThemeStates>>();
 
   @override
@@ -33,21 +31,9 @@ class _LoginBackgroundState extends State<LoginBackground> {
           return Stack(
             fit: StackFit.expand,
             children: [
-              RiveAnimation.asset(
+              const RiveAnimation.asset(
                 AppAnimations.backgroundLogin,
                 fit: BoxFit.fill,
-                onInit: (art) {
-                  stateMachineController =
-                      StateMachineController.fromArtboard(art, "state")!;
-
-                  if (stateMachineController == null) {
-                    return;
-                  }
-                  art.addController(stateMachineController!);
-                  isDark = stateMachineController!.findInput("isDark");
-
-                  isDark?.change(state.themeMode == ThemeMode.dark);
-                },
               ),
               BackdropFilter(
                 filter: ImageFilter.blur(

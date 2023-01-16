@@ -1,8 +1,11 @@
-import 'package:berna_libary/core/domain/interfaces/use_cases/i_auth_use_case.dart';
+import 'package:berna_libary/core/blocs/app_user_bloc/app_user_events.dart';
+import 'package:berna_libary/core/blocs/app_user_bloc/app_user_states.dart';
+import 'package:berna_libary/core/domain/extensions/dartz_extension.dart';
 import 'package:berna_libary/core/domain/use_cases/auth_use_case.dart';
 import 'package:berna_libary/modules/login/domain/interfaces/i_login_use_case.dart';
 import 'package:berna_libary/modules/login/domain/models/login_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginUseCase implements ILoginUseCase {
@@ -17,13 +20,17 @@ class LoginUseCase implements ILoginUseCase {
   @override
   LoginModel loginModel = LoginModel.empty();
   @override
-  final IAuthUseCase authUseCase = Modular.get<AuthUseCase>();
+  final appUserBloc = Modular.get<Bloc<AppUserEvents, AppUserStates>>();
+  @override
+  final authUseCase = Modular.get<AuthUseCase>();
 
   LoginUseCase({
     required this.signUpRoute,
     required this.homeRoute,
     required this.recoverPasswordRoute,
   });
+
+  get user => null;
 
   @override
   Future<bool?> login() async {
@@ -34,6 +41,7 @@ class LoginUseCase implements ILoginUseCase {
 
     await Future.delayed(const Duration(seconds: 1));
     if (isLogged.isRight()) {
+      appUserBloc.add(LoginUser(user: isLogged.right()));
       Modular.to.navigate(homeRoute);
       return true;
     }

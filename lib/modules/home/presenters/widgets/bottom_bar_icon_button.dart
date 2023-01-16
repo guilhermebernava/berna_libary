@@ -7,12 +7,14 @@ class BottomBarIconButton extends StatelessWidget {
   final IconData icon;
   final String text;
   final VoidCallback onTap;
+  final bool isSelected;
 
   const BottomBarIconButton({
     super.key,
     required this.icon,
     required this.text,
     required this.onTap,
+    required this.isSelected,
   });
 
   @override
@@ -27,11 +29,15 @@ class BottomBarIconButton extends StatelessWidget {
         child: SizedBox(
           height: 62,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 icon,
-                size: 40,
-                color: AppColors.white,
+                size: 35,
+                color: isSelected ? AppColors.primary : AppColors.white,
+              ),
+              const SizedBox(
+                height: 8,
               ),
               Text(
                 text,

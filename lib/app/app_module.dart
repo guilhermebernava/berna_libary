@@ -1,4 +1,5 @@
 import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_bloc.dart';
+import 'package:berna_libary/core/blocs/app_user_bloc/app_user_bloc.dart';
 import 'package:berna_libary/core/domain/use_cases/auth_use_case.dart';
 import 'package:berna_libary/core/services/themes_services.dart';
 import 'package:berna_libary/modules/home/home_module.dart';
@@ -33,6 +34,9 @@ class AppModule extends Module {
           (i) => AppThemeBloc(
             ThemeMode.dark,
           ),
+        ),
+        BlocBind.singleton(
+          (i) => AppUserBloc(),
         ),
         Bind(
           (i) => SplashUseCase(

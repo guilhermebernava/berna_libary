@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppHomeFonts {
   static final iconText = GoogleFonts.roboto(
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w400,
     color: AppColors.white,
   );

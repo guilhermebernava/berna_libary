@@ -21,7 +21,9 @@ class RecoverPasswordUseCase implements IRecoverPasswordUseCase {
 
   @override
   Future<String?> changePassword(
-      GlobalKey<FormState> key, BuildContext context) async {
+    GlobalKey<FormState> key,
+    BuildContext context,
+  ) async {
     if (key.currentState?.validate() == false) {
       return "";
     }

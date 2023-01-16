@@ -1,49 +1,40 @@
-import 'package:berna_libary/design/colors/app_colors.dart';
+import 'package:berna_libary/core/blocs/app_user_bloc/app_user_events.dart';
+import 'package:berna_libary/core/blocs/app_user_bloc/app_user_states.dart';
 import 'package:berna_libary/design/fonts/app_fonts.dart';
-import 'package:berna_libary/modules/home/presenters/widgets/bottom_bar_icon_button.dart';
+import 'package:berna_libary/modules/home/presenters/widgets/home_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Modular.get<Bloc<AppUserEvents, AppUserStates>>();
+
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: Text(
-          "HOME PAGE",
-          style: AppFonts.basicFont,
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15),
-        child: BottomAppBar(
-          elevation: 0,
-          color: AppColors.black,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              BottomBarIconButton(
-                icon: Icons.home_filled,
-                text: "Home",
-                onTap: () {},
+      body: BlocBuilder(
+        bloc: bloc,
+        builder: (_, state) {
+          if (state is LoggedUser) {
+            return Center(
+              child: Text(
+                state.user.email ?? "",
+                style: AppFonts.basicFont,
               ),
-              BottomBarIconButton(
-                icon: Icons.search_outlined,
-                text: "Search",
-                onTap: () {},
-              ),
-              BottomBarIconButton(
-                icon: Icons.favorite,
-                text: "Playlists",
-                onTap: () {},
-              )
-            ],
-          ),
-        ),
+            );
+          }
+          return Center(
+            child: Text(
+              "HOME PAGE",
+              style: AppFonts.basicFont,
+            ),
+          );
+        },
       ),
+      bottomNavigationBar: const HomeBottomBar(),
     );
   }
 }

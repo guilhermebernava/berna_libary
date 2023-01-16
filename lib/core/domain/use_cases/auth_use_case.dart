@@ -1,3 +1,4 @@
+import 'package:berna_libary/core/domain/entities/core_user.dart';
 import 'package:berna_libary/core/domain/errors/auth_error.dart';
 import 'package:berna_libary/core/domain/interfaces/use_cases/i_auth_use_case.dart';
 import 'package:dartz/dartz.dart';
@@ -16,7 +17,7 @@ class AuthUseCase implements IAuthUseCase {
   });
 
   @override
-  Future<Either<AuthError, User>> login(
+  Future<Either<AuthError, CoreUser>> login(
       {required String email, required String password}) async {
     try {
       final result = await auth.signInWithEmailAndPassword(
@@ -31,7 +32,13 @@ class AuthUseCase implements IAuthUseCase {
         );
       }
 
-      return Right(result.user!);
+      final user = CoreUser(
+        email: result.user!.email,
+        name: result.user!.displayName,
+        uuid: result.user!.uid,
+      );
+
+      return Right(user);
     } catch (e) {
       return Left(
         AuthError(
@@ -43,7 +50,7 @@ class AuthUseCase implements IAuthUseCase {
   }
 
   @override
-  Future<Either<AuthError, User>> createUser(
+  Future<Either<AuthError, CoreUser>> createUser(
       {required String email, required String password}) async {
     try {
       final result = await auth.createUserWithEmailAndPassword(
@@ -57,8 +64,13 @@ class AuthUseCase implements IAuthUseCase {
           ),
         );
       }
+      final user = CoreUser(
+        email: result.user!.email,
+        name: result.user!.displayName,
+        uuid: result.user!.uid,
+      );
 
-      return Right(result.user!);
+      return Right(user);
     } catch (e) {
       return Left(
         AuthError(
