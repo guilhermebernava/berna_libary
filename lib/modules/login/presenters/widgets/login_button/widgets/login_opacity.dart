@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class LoginOpacity extends StatefulWidget {
   final Widget child;
-  final bool canAnimate;
 
   const LoginOpacity({
     super.key,
     required this.child,
-    required this.canAnimate,
   });
 
   @override
@@ -20,15 +18,14 @@ class _LoginOpacityState extends State<LoginOpacity> {
   @override
   void initState() {
     super.initState();
-    if (widget.canAnimate) {
-      Future.delayed(const Duration(milliseconds: 700), () {
-        if (mounted) {
-          setState(() {
-            _canAnimate = true;
-          });
-        }
-      });
-    }
+
+    Future.delayed(const Duration(milliseconds: 700), () {
+      if (mounted) {
+        setState(() {
+          _canAnimate = true;
+        });
+      }
+    });
   }
 
   @override

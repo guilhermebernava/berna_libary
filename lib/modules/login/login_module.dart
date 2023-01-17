@@ -1,5 +1,4 @@
 import 'package:berna_libary/modules/home/home_module.dart';
-import 'package:berna_libary/modules/login/domain/use_cases/login_animate_use_case.dart';
 import 'package:berna_libary/modules/login/domain/use_cases/login_use_case.dart';
 import 'package:berna_libary/modules/login/presenters/login_page.dart';
 import 'package:berna_libary/modules/recover_password/recover_password_module.dart';
@@ -17,9 +16,6 @@ class LoginModule extends Module {
             recoverPasswordRoute: RecoverPasswordModule.moduleRoute,
             signUpRoute: SignUpModule.moduleRoute,
           ),
-        ),
-        Bind.factory(
-          (i) => LoginAnimateUseCase(),
         ),
       ];
 

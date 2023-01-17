@@ -28,7 +28,6 @@ class LoginPage extends StatelessWidget {
             children: [
               const LoginIconAnimated(),
               LoginOpacity(
-                canAnimate: true,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,6 +47,9 @@ class LoginPage extends StatelessWidget {
                       onChanged: (value) => useCase.loginModel.password(value),
                       validator: (_) => useCase.loginModel.password.validator(),
                       hintText: "********",
+                    ),
+                    SizedBox(
+                      height: size.height * 0.05,
                     ),
                     LoginButton(
                       useCase: useCase,
