@@ -105,8 +105,7 @@ class _LoginButtonState extends State<LoginButton>
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           GestureDetector(
             onTap: isLoading.value || hasError.value
@@ -141,7 +140,7 @@ class _LoginButtonState extends State<LoginButton>
           ),
           LoginTextButton(
             useCase: widget.useCase,
-          )
+          ),
         ],
       ),
     );

@@ -22,51 +22,57 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       body: SignUpBackground(
         child: FormWithKey(
-          mainAxisAlignment: MainAxisAlignment.start,
           formKey: useCase.formKey,
-          children: [
-            CoreBackButton(
-              size: size,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            CoreTextField(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-              title: "Email",
-              obscureText: false,
-              hintText: "teste@teste.com",
-              onChanged: (value) => useCase.model.email(value),
-              validator: (_) => useCase.model.email.validator(),
-            ),
-            CoreTextField(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-              title: "Password",
-              obscureText: true,
-              onChanged: (value) => useCase.model.password(value),
-              validator: (_) => useCase.model.password.validator(),
-              hintText: "********",
-            ),
-            CoreTextField(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-              title: "Confirm Password",
-              obscureText: true,
-              onChanged: (value) => useCase.model.confirmPassword(value),
-              validator: (_) => useCase.model.confirmPassword.validator(),
-              hintText: "********",
-            ),
-            SizedBox(
-              height: size.height * 0.05,
-            ),
-            CoreApiButton(
-              text: "Sign Up",
-              size: size,
-              onTap: () async => await useCase.validateInputs().then(
-                    (value) =>
-                        ValidateServices.validateFutureString(value, context),
-                  ),
-            ),
-          ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CoreBackButton(
+                size: size,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              CoreTextField(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                title: "Email",
+                obscureText: false,
+                hintText: "teste@teste.com",
+                onChanged: (value) => useCase.model.email(value),
+                validator: (_) => useCase.model.email.validator(),
+              ),
+              CoreTextField(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                title: "Password",
+                obscureText: true,
+                onChanged: (value) => useCase.model.password(value),
+                validator: (_) => useCase.model.password.validator(),
+                hintText: "********",
+              ),
+              CoreTextField(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                title: "Confirm Password",
+                obscureText: true,
+                onChanged: (value) => useCase.model.confirmPassword(value),
+                validator: (_) => useCase.model.confirmPassword.validator(),
+                hintText: "********",
+              ),
+              SizedBox(
+                height: size.height * 0.05,
+              ),
+              CoreApiButton(
+                text: "Sign Up",
+                size: size,
+                onTap: () async => await useCase.validateInputs().then(
+                      (value) =>
+                          ValidateServices.validateFutureString(value, context),
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
     );

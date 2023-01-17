@@ -26,39 +26,43 @@ class RecoverEmailPage extends StatelessWidget {
 
     return RecoverPasswordBackground(
       child: FormWithKey(
-        mainAxisAlignment: MainAxisAlignment.start,
         formKey: key,
-        children: [
-          CoreBackButton(
-            size: size,
-            onTap: () => Modular.to.navigate(useCase.loginRoute),
-          ),
-          SizedBox(
-            height: size.height * 0.25,
-          ),
-          CoreTextField(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-            title: "Email",
-            obscureText: false,
-            hintText: "teste@teste.com",
-            onChanged: (value) => useCase.model.email(value),
-            validator: (_) => useCase.model.email.validator(),
-          ),
-          SizedBox(
-            height: size.height * 0.05,
-          ),
-          CoreApiButton(
-            size: size,
-            route: useCase.loginRoute,
-            text: "Send Token to Email",
-            onTap: () async => await useCase.changePassword(key, context).then(
-                  (string) => ValidateServices.validateFutureString(
-                    string,
-                    context,
-                  ),
-                ),
-          ),
-        ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CoreBackButton(
+              size: size,
+              onTap: () => Modular.to.navigate(useCase.loginRoute),
+            ),
+            SizedBox(
+              height: size.height * 0.25,
+            ),
+            CoreTextField(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+              title: "Email",
+              obscureText: false,
+              hintText: "teste@teste.com",
+              onChanged: (value) => useCase.model.email(value),
+              validator: (_) => useCase.model.email.validator(),
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
+            CoreApiButton(
+              size: size,
+              route: useCase.loginRoute,
+              text: "Send Token to Email",
+              onTap: () async =>
+                  await useCase.changePassword(key, context).then(
+                        (string) => ValidateServices.validateFutureString(
+                          string,
+                          context,
+                        ),
+                      ),
+            ),
+          ],
+        ),
       ),
     );
   }

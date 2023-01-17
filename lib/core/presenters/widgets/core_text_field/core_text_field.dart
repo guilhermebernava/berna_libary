@@ -57,68 +57,72 @@ class _CoreTextFieldState extends State<CoreTextField> {
   @override
   Widget build(BuildContext context) {
     const double circular = 15;
+    final size = MediaQuery.of(context).size * 0.9;
     final themeColor =
         themesServices.isDarkTheme(context) ? AppColors.white : AppColors.black;
 
     return Padding(
       padding: widget.padding,
-      child: TextFormField(
-        initialValue: widget.initialValue,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        controller: widget.controller,
-        onChanged: widget.onChanged,
-        decoration: InputDecoration(
-          errorStyle: AppTextFormFieldsFonts.textformFieldError,
-          hintStyle: AppTextFormFieldsFonts.hintTextFont,
-          hintText: widget.hintText,
-          counter: TextFormCounter(
-            counterText: widget.counterText,
-            onCounterTap: widget.onCounterTap,
-          ),
-          labelText: widget.title,
-          labelStyle: AppTextFormFieldsFonts.textformFieldTitleFont,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 2,
-              color: themeColor,
+      child: SizedBox(
+        width: size.width,
+        child: TextFormField(
+          initialValue: widget.initialValue,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          controller: widget.controller,
+          onChanged: widget.onChanged,
+          decoration: InputDecoration(
+            errorStyle: AppTextFormFieldsFonts.textformFieldError,
+            hintStyle: AppTextFormFieldsFonts.hintTextFont,
+            hintText: widget.hintText,
+            counter: TextFormCounter(
+              counterText: widget.counterText,
+              onCounterTap: widget.onCounterTap,
             ),
-            borderRadius: BorderRadius.circular(circular),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 2,
-              color: AppColors.red,
+            labelText: widget.title,
+            labelStyle: AppTextFormFieldsFonts.textformFieldTitleFont,
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 2,
+                color: themeColor,
+              ),
+              borderRadius: BorderRadius.circular(circular),
             ),
-            borderRadius: BorderRadius.circular(circular),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 2,
-              color: themeColor,
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                width: 2,
+                color: AppColors.red,
+              ),
+              borderRadius: BorderRadius.circular(circular),
             ),
-            borderRadius: BorderRadius.circular(circular),
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 2,
-              color: themeColor,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 2,
+                color: themeColor,
+              ),
+              borderRadius: BorderRadius.circular(circular),
             ),
-            borderRadius: BorderRadius.circular(circular),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 2,
+                color: themeColor,
+              ),
+              borderRadius: BorderRadius.circular(circular),
+            ),
+            suffixIcon: ObscureTextWidget(
+              onTap: () => setState(() {
+                isHidden = !isHidden;
+              }),
+              isShow: widget.obscureText,
+              isHidden: isHidden,
+            ),
           ),
-          suffixIcon: ObscureTextWidget(
-            onTap: () => setState(() {
-              isHidden = !isHidden;
-            }),
-            isShow: widget.obscureText,
-            isHidden: isHidden,
-          ),
+          inputFormatters: widget.formatters,
+          validator: widget.validator,
+          keyboardType: widget.keyboardType,
+          maxLines: widget.maxLines,
+          style: AppTextFormFieldsFonts.textformFieldTextFont,
+          obscureText: widget.obscureText ? isHidden : widget.obscureText,
         ),
-        inputFormatters: widget.formatters,
-        validator: widget.validator,
-        keyboardType: widget.keyboardType,
-        maxLines: widget.maxLines,
-        style: AppTextFormFieldsFonts.textformFieldTextFont,
-        obscureText: widget.obscureText ? isHidden : widget.obscureText,
       ),
     );
   }
