@@ -1,7 +1,12 @@
 import 'dart:ui';
+import 'package:berna_libary/core/services/navigate_services.dart';
 import 'package:berna_libary/design/colors/app_colors.dart';
+import 'package:berna_libary/modules/home/presenters/pages/home_page.dart';
+import 'package:berna_libary/modules/home/presenters/pages/playlist_page.dart';
+import 'package:berna_libary/modules/home/presenters/pages/search_page.dart';
 import 'package:berna_libary/modules/home/presenters/widgets/bottom_bar_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeBottomBar extends StatefulWidget {
   const HomeBottomBar({super.key});
@@ -13,12 +18,36 @@ class HomeBottomBar extends StatefulWidget {
 class _HomeBottomBarState extends State<HomeBottomBar> {
   int _index = 0;
 
+  void listenModular() {
+    if (Modular.to.path == "/home${HomePage.route}") {
+      updateIndex(0);
+    }
+    if (Modular.to.path == "/home${SearchPage.route}") {
+      updateIndex(1);
+    }
+    if (Modular.to.path == "/home${PlaylistPage.route}") {
+      updateIndex(2);
+    }
+  }
+
   void updateIndex(int index) {
     if (mounted) {
       setState(() {
         _index = index;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Modular.to.addListener(listenModular);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    Modular.to.removeListener(listenModular);
   }
 
   @override
@@ -45,6 +74,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     text: "Home",
                     onTap: () {
                       updateIndex(0);
+                      NavigateServices.navigateRouteOutlet(HomePage.route);
                     },
                   ),
                   BottomBarIconButton(
@@ -53,6 +83,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     text: "Search",
                     onTap: () {
                       updateIndex(1);
+                      NavigateServices.navigateRouteOutlet(SearchPage.route);
                     },
                   ),
                   BottomBarIconButton(
@@ -61,6 +92,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     text: "Playlists",
                     onTap: () {
                       updateIndex(2);
+                      NavigateServices.navigateRouteOutlet(PlaylistPage.route);
                     },
                   )
                 ],

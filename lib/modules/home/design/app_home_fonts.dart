@@ -8,4 +8,10 @@ class AppHomeFonts {
     fontWeight: FontWeight.w400,
     color: AppColors.white,
   );
+
+  static final homeContainer = GoogleFonts.roboto(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
 }

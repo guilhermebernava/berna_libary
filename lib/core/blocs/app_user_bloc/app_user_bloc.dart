@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppUserBloc extends Bloc<AppUserEvents, AppUserStates> {
   CoreUser? user;
+  //TODO adicionar shared_preferences
 
   AppUserBloc() : super(UnloggedUser()) {
     on<LoginUser>((event, emit) async {
