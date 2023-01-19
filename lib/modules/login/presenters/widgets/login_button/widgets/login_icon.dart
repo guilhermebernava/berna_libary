@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginIconAnimated extends StatefulWidget {
-  final bool canAnimate;
+  final ValueNotifier<bool> canAnimate;
 
   const LoginIconAnimated({
     super.key,
@@ -18,6 +18,12 @@ class _LoginIconState extends State<LoginIconAnimated>
   late final AnimationController controller;
   late final Animation animation;
 
+  void playAnimation() {
+    if (widget.canAnimate.value && mounted) {
+      controller.forward();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -25,9 +31,13 @@ class _LoginIconState extends State<LoginIconAnimated>
         vsync: this, duration: const Duration(milliseconds: 1500));
     animation = Tween(begin: 300.0, end: 150.0).animate(controller);
 
-    if (widget.canAnimate) {
-      controller.forward();
-    }
+    widget.canAnimate.addListener(playAnimation);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.canAnimate.removeListener(playAnimation);
   }
 
   @override

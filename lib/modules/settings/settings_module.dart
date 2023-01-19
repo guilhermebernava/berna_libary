@@ -1,3 +1,4 @@
+import 'package:berna_libary/modules/login/login_module.dart';
 import 'package:berna_libary/modules/settings/presenters/settings_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -11,7 +12,9 @@ class SettingsModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (_, __) => const SettingsPage(),
+          child: (_, __) => const SettingsPage(
+            loginRoute: LoginModule.moduleRoute,
+          ),
         )
       ];
 }

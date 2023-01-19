@@ -25,7 +25,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late final StreamSubscription subscription;
-  bool canAnimate = false;
+  ValueNotifier<bool> canAnimate = ValueNotifier(false);
 
   void onChangeState(AppUserStates state) {
     if (state is LoggedUser) {
@@ -34,9 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (mounted) {
-      setState(() {
-        canAnimate = true;
-      });
+      canAnimate.value = true;
     }
   }
 

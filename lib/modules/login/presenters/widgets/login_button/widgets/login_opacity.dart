@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoginOpacity extends StatefulWidget {
   final Widget child;
-  final bool canAnimate;
+  final ValueNotifier<bool> canAnimate;
 
   const LoginOpacity({
     super.key,
@@ -17,11 +17,8 @@ class LoginOpacity extends StatefulWidget {
 class _LoginOpacityState extends State<LoginOpacity> {
   bool _canAnimate = false;
 
-  @override
-  void initState() {
-    super.initState();
-
-    if (widget.canAnimate) {
+  void animation() {
+    if (widget.canAnimate.value && mounted) {
       Future.delayed(const Duration(milliseconds: 700), () {
         if (mounted) {
           setState(() {
@@ -30,6 +27,18 @@ class _LoginOpacityState extends State<LoginOpacity> {
         }
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.canAnimate.addListener(animation);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.canAnimate.removeListener(animation);
   }
 
   @override
