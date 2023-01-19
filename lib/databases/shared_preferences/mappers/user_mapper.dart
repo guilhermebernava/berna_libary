@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:berna_libary/core/domain/entities/core_user.dart';
+import 'package:berna_libary/commons/domain/entities/core_user.dart';
 import 'package:berna_libary/databases/shared_preferences/interfaces/i_user_mapper.dart';
 
 class UserMapper implements IUserMapper {

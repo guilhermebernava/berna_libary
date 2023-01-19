@@ -1,5 +1,5 @@
-import 'package:berna_libary/core/value_objects/email.dart';
-import 'package:berna_libary/core/value_objects/password.dart';
+import 'package:berna_libary/commons/value_objects/email.dart';
+import 'package:berna_libary/commons/value_objects/password.dart';
 
 class CreateUserModel {
   final Email email;

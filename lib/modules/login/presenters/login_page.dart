@@ -1,5 +1,5 @@
-import 'package:berna_libary/core/presenters/widgets/core_text_field/core_text_field.dart';
-import 'package:berna_libary/core/presenters/widgets/form_with_key/form_with_key.dart';
+import 'package:berna_libary/commons/presenters/widgets/core_text_field/core_text_field.dart';
+import 'package:berna_libary/commons/presenters/widgets/form_with_key/form_with_key.dart';
 import 'package:berna_libary/modules/login/domain/interfaces/i_login_use_case.dart';
 import 'package:berna_libary/modules/login/presenters/widgets/login_background.dart';
 import 'package:berna_libary/modules/login/presenters/widgets/login_button/login_button.dart';

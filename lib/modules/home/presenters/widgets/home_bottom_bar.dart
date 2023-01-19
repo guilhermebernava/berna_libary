@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:berna_libary/core/services/navigate_services.dart';
+import 'package:berna_libary/commons/services/navigate_services.dart';
 import 'package:berna_libary/design/colors/app_colors.dart';
 import 'package:berna_libary/modules/home/presenters/pages/home_page.dart';
 import 'package:berna_libary/modules/home/presenters/pages/playlist_page.dart';

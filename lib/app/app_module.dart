@@ -1,7 +1,10 @@
-import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_bloc.dart';
-import 'package:berna_libary/core/blocs/app_user_bloc/app_user_bloc.dart';
-import 'package:berna_libary/core/domain/use_cases/auth_use_case.dart';
-import 'package:berna_libary/core/services/themes_services.dart';
+import 'package:berna_libary/commons/app_theme/app_theme_bloc/app_theme_bloc.dart';
+import 'package:berna_libary/commons/domain/extensions/dartz_extension.dart';
+import 'package:berna_libary/commons/services/themes_services.dart';
+import 'package:berna_libary/commons/user/app_user_bloc/app_user_bloc.dart';
+import 'package:berna_libary/commons/auth/use_cases/auth_use_case.dart';
+import 'package:berna_libary/databases/shared_preferences/mappers/user_mapper.dart';
+import 'package:berna_libary/databases/shared_preferences/repositories/user_repository.dart';
 import 'package:berna_libary/modules/home/home_module.dart';
 import 'package:berna_libary/modules/login/login_module.dart';
 import 'package:berna_libary/modules/recover_password/recover_password_module.dart';
@@ -35,8 +38,17 @@ class AppModule extends Module {
             ThemeMode.dark,
           ),
         ),
-        BlocBind.singleton(
-          (i) => AppUserBloc(),
+        Bind.singleton(
+          (i) => UserRepository(
+            mapper: UserMapper(),
+          ),
+        ),
+        AsyncBind(
+          (i) async {
+            final userRepo = i.get<UserRepository>();
+            final user = await userRepo.getUser();
+            return AppUserBloc(user.isRight() ? user.right() : null);
+          },
         ),
         Bind(
           (i) => SplashUseCase(

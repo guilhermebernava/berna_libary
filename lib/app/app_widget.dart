@@ -1,5 +1,5 @@
-import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_events.dart';
-import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_states.dart';
+import 'package:berna_libary/commons/app_theme/app_theme_bloc/app_theme_events.dart';
+import 'package:berna_libary/commons/app_theme/app_theme_bloc/app_theme_states.dart';
 import 'package:berna_libary/design/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

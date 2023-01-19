@@ -1,5 +1,5 @@
-import 'package:berna_libary/core/domain/entities/core_user.dart';
-import 'package:berna_libary/core/domain/extensions/dartz_extension.dart';
+import 'package:berna_libary/commons/domain/entities/core_user.dart';
+import 'package:berna_libary/commons/domain/extensions/dartz_extension.dart';
 import 'package:berna_libary/databases/shared_preferences/mappers/user_mapper.dart';
 import 'package:berna_libary/databases/shared_preferences/repositories/user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

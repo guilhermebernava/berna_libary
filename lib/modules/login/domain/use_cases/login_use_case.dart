@@ -1,7 +1,7 @@
-import 'package:berna_libary/core/blocs/app_user_bloc/app_user_events.dart';
-import 'package:berna_libary/core/blocs/app_user_bloc/app_user_states.dart';
-import 'package:berna_libary/core/domain/extensions/dartz_extension.dart';
-import 'package:berna_libary/core/domain/use_cases/auth_use_case.dart';
+import 'package:berna_libary/commons/domain/extensions/dartz_extension.dart';
+import 'package:berna_libary/commons/user/app_user_bloc/app_user_events.dart';
+import 'package:berna_libary/commons/user/app_user_bloc/app_user_states.dart';
+import 'package:berna_libary/commons/auth/use_cases/auth_use_case.dart';
 import 'package:berna_libary/modules/login/domain/interfaces/i_login_use_case.dart';
 import 'package:berna_libary/modules/login/domain/models/login_model.dart';
 import 'package:flutter/material.dart';

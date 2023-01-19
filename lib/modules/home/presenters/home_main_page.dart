@@ -1,4 +1,4 @@
-import 'package:berna_libary/core/services/navigate_services.dart';
+import 'package:berna_libary/commons/services/navigate_services.dart';
 import 'package:berna_libary/modules/home/presenters/pages/home_page.dart';
 import 'package:berna_libary/modules/home/presenters/widgets/home_bottom_bar.dart';
 import 'package:flutter/material.dart';

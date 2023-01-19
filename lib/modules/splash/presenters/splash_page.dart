@@ -1,5 +1,5 @@
-import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_events.dart';
-import 'package:berna_libary/core/blocs/app_theme_bloc/app_theme_states.dart';
+import 'package:berna_libary/commons/app_theme/app_theme_bloc/app_theme_events.dart';
+import 'package:berna_libary/commons/app_theme/app_theme_bloc/app_theme_states.dart';
 import 'package:berna_libary/modules/splash/domain/interfaces/i_animation_use_case.dart';
 import 'package:berna_libary/modules/splash/domain/interfaces/i_splash_use_case.dart';
 import 'package:berna_libary/modules/splash/domain/use_cases/animation_use_case.dart';

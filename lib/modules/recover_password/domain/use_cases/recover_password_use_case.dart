@@ -1,7 +1,7 @@
-import 'package:berna_libary/core/domain/extensions/dartz_extension.dart';
-import 'package:berna_libary/core/domain/interfaces/use_cases/i_auth_use_case.dart';
-import 'package:berna_libary/core/domain/use_cases/auth_use_case.dart';
-import 'package:berna_libary/core/value_objects/email.dart';
+import 'package:berna_libary/commons/auth/interfaces/use_cases/i_auth_use_case.dart';
+import 'package:berna_libary/commons/auth/use_cases/auth_use_case.dart';
+import 'package:berna_libary/commons/domain/extensions/dartz_extension.dart';
+import 'package:berna_libary/commons/value_objects/email.dart';
 import 'package:berna_libary/modules/recover_password/domain/interfaces/i_recover_password_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:berna_libary/modules/recover_password/domain/model/recover_password_model.dart';

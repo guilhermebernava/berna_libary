@@ -1,4 +1,4 @@
-import 'package:berna_libary/core/domain/interfaces/use_cases/i_auth_use_case.dart';
+import 'package:berna_libary/commons/auth/interfaces/use_cases/i_auth_use_case.dart';
 import 'package:berna_libary/modules/sign_up/domain/model/create_user_model.dart';
 import 'package:flutter/material.dart';
 
