@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginIconAnimated extends StatefulWidget {
+  final bool canAnimate;
+
   const LoginIconAnimated({
     super.key,
+    required this.canAnimate,
   });
 
   @override
@@ -18,12 +21,13 @@ class _LoginIconState extends State<LoginIconAnimated>
   @override
   void initState() {
     super.initState();
-
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1500));
     animation = Tween(begin: 300.0, end: 150.0).animate(controller);
 
-    controller.forward();
+    if (widget.canAnimate) {
+      controller.forward();
+    }
   }
 
   @override

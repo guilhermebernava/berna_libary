@@ -1,4 +1,5 @@
 import 'package:berna_libary/commons/domain/entities/core_user.dart';
+import 'package:berna_libary/commons/domain/extensions/dartz_extension.dart';
 import 'package:berna_libary/commons/user/app_user_bloc/app_user_events.dart';
 import 'package:berna_libary/commons/user/app_user_bloc/app_user_states.dart';
 import 'package:berna_libary/databases/shared_preferences/repositories/user_repository.dart';
@@ -9,12 +10,21 @@ class AppUserBloc extends Bloc<AppUserEvents, AppUserStates> {
   CoreUser? user;
   final userRepo = Modular.get<UserRepository>();
 
-  AppUserBloc(CoreUser? user)
-      : super(user != null ? LoggedUser(user: user) : UnloggedUser()) {
+  AppUserBloc() : super(UnloggedUser()) {
     on<LoginUser>((event, emit) async {
       user = event.user;
       userRepo.loginUser(event.user);
       emit(LoggedUser(user: event.user));
+    });
+
+    on<GetUser>((event, emit) async {
+      final user = await userRepo.getUser();
+
+      if (user.isRight()) {
+        emit(LoggedUser(user: user.right()));
+        return;
+      }
+      emit(UnloggedUser());
     });
 
     on<LogoutUser>((event, emit) {

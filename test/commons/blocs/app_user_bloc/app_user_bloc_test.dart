@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   blocTest<AppUserBloc, AppUserStates>(
     'emits [LoggedUser] when have an success with LoginUser event',
-    build: () => AppUserBloc(CoreUser(email: "", name: "", uuid: "")),
+    build: () => AppUserBloc(),
     act: (bloc) =>
         bloc.add(LoginUser(user: CoreUser(email: "", name: "", uuid: ""))),
     expect: () => [isA<LoggedUser>()],
@@ -16,7 +16,7 @@ void main() {
 
   blocTest<AppUserBloc, AppUserStates>(
     'emits [UnloggedUser] when have an success with LogoutUser event',
-    build: () => AppUserBloc(CoreUser(email: "", name: "", uuid: "")),
+    build: () => AppUserBloc(),
     act: (bloc) => bloc.add(LogoutUser()),
     expect: () => [isA<UnloggedUser>()],
   );

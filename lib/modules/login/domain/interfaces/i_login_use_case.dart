@@ -26,6 +26,8 @@ abstract class ILoginUseCase {
 
   Future<bool?> validateFormInputs();
   Future<bool?> login();
+  void checkUserLogged();
   void redirectToSignUp();
+  void redirectToHome();
   void redirectToRecoverPassword();
 }

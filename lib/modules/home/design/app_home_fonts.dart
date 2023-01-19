@@ -14,4 +14,10 @@ class AppHomeFonts {
     fontWeight: FontWeight.bold,
     color: AppColors.white,
   );
+
+  static final homeAppBar = GoogleFonts.roboto(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
 }

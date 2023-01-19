@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeMainPage extends StatefulWidget {
-  const HomeMainPage({super.key});
+  const HomeMainPage({
+    super.key,
+  });
 
   @override
   State<HomeMainPage> createState() => _HomeMainPageState();
@@ -15,7 +17,6 @@ class _HomeMainPageState extends State<HomeMainPage> {
   @override
   void initState() {
     super.initState();
-
     NavigateServices.navigateRouteOutlet(HomePage.route);
   }
 

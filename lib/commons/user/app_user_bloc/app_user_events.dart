@@ -10,4 +10,6 @@ class LoginUser implements AppUserEvents {
   });
 }
 
+class GetUser implements AppUserEvents {}
+
 class LogoutUser implements AppUserEvents {}

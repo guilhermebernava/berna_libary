@@ -19,7 +19,7 @@ class HomePageContainerGrid extends StatelessWidget {
       child: GridView(
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(
-          vertical: 30,
+          vertical: 10,
           horizontal: 15,
         ),
         physics: const NeverScrollableScrollPhysics(),

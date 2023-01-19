@@ -1,5 +1,4 @@
 import 'package:berna_libary/commons/app_theme/app_theme_bloc/app_theme_bloc.dart';
-import 'package:berna_libary/commons/domain/extensions/dartz_extension.dart';
 import 'package:berna_libary/commons/services/themes_services.dart';
 import 'package:berna_libary/commons/user/app_user_bloc/app_user_bloc.dart';
 import 'package:berna_libary/commons/auth/use_cases/auth_use_case.dart';
@@ -8,6 +7,7 @@ import 'package:berna_libary/databases/shared_preferences/repositories/user_repo
 import 'package:berna_libary/modules/home/home_module.dart';
 import 'package:berna_libary/modules/login/login_module.dart';
 import 'package:berna_libary/modules/recover_password/recover_password_module.dart';
+import 'package:berna_libary/modules/settings/settings_module.dart';
 import 'package:berna_libary/modules/sign_up/sign_up_module.dart';
 import 'package:berna_libary/modules/splash/domain/use_cases/splash_use_case.dart';
 import 'package:berna_libary/modules/splash/presenters/splash_page.dart';
@@ -43,12 +43,8 @@ class AppModule extends Module {
             mapper: UserMapper(),
           ),
         ),
-        AsyncBind(
-          (i) async {
-            final userRepo = i.get<UserRepository>();
-            final user = await userRepo.getUser();
-            return AppUserBloc(user.isRight() ? user.right() : null);
-          },
+        BlocBind.singleton(
+          (i) => AppUserBloc(),
         ),
         Bind(
           (i) => SplashUseCase(
@@ -87,6 +83,11 @@ class AppModule extends Module {
         ModuleRoute(
           RecoverPasswordModule.moduleRoute,
           module: RecoverPasswordModule(),
+          transition: TransitionType.fadeIn,
+        ),
+        ModuleRoute(
+          SettingsModule.moduleRoute,
+          module: SettingsModule(),
           transition: TransitionType.fadeIn,
         )
       ];

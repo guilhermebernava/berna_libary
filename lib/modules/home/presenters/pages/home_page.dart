@@ -1,8 +1,15 @@
+import 'package:berna_libary/modules/home/domain/interfaces/i_home_use_case.dart';
+import 'package:berna_libary/modules/home/presenters/widgets/home_page_widgets/home_app_bar.dart';
 import 'package:berna_libary/modules/home/presenters/widgets/home_page_widgets/home_page_container_grid.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final IHomeUseCase useCase;
+
+  const HomePage({
+    super.key,
+    required this.useCase,
+  });
 
   static const route = "/home";
 
@@ -11,6 +18,10 @@ class HomePage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: HomeAppBar(
+        useCase: useCase,
+        size: size,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
