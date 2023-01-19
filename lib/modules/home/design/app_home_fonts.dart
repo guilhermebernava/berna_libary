@@ -20,4 +20,16 @@ class AppHomeFonts {
     fontWeight: FontWeight.bold,
     color: AppColors.white,
   );
+
+  static final homeBigContainer = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static final homeBigContainerLight = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+    color: AppColors.white,
+  );
 }

@@ -4,7 +4,7 @@ import 'package:berna_libary/design/colors/app_colors.dart';
 import 'package:berna_libary/modules/home/presenters/pages/home_page.dart';
 import 'package:berna_libary/modules/home/presenters/pages/playlist_page.dart';
 import 'package:berna_libary/modules/home/presenters/pages/search_page.dart';
-import 'package:berna_libary/modules/home/presenters/widgets/bottom_bar_icon_button.dart';
+import 'package:berna_libary/modules/home/presenters/widgets/home_main_page/bottom_bar_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
