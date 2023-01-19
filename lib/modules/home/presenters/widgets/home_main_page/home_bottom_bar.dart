@@ -55,48 +55,45 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: 15.0,
-          sigmaY: 15.0,
+          sigmaX: 5.0,
+          sigmaY: 5.0,
         ),
-        child: Opacity(
-          opacity: 0.8,
-          child: BottomAppBar(
-            color: AppColors.black,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  BottomBarIconButton(
-                    isSelected: _index == 0,
-                    icon: Icons.home_filled,
-                    text: "Home",
-                    onTap: () {
-                      updateIndex(0);
-                      NavigateServices.navigateRouteOutlet(HomePage.route);
-                    },
-                  ),
-                  BottomBarIconButton(
-                    isSelected: _index == 1,
-                    icon: Icons.search_outlined,
-                    text: "Search",
-                    onTap: () {
-                      updateIndex(1);
-                      NavigateServices.navigateRouteOutlet(SearchPage.route);
-                    },
-                  ),
-                  BottomBarIconButton(
-                    isSelected: _index == 2,
-                    icon: Icons.favorite_rounded,
-                    text: "Playlists",
-                    onTap: () {
-                      updateIndex(2);
-                      NavigateServices.navigateRouteOutlet(PlaylistPage.route);
-                    },
-                  )
-                ],
-              ),
+        child: SizedBox(
+          height: 70,
+          child: Container(
+            color: AppColors.black.withOpacity(0.4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                BottomBarIconButton(
+                  isSelected: _index == 0,
+                  icon: Icons.home_filled,
+                  text: "Home",
+                  onTap: () {
+                    updateIndex(0);
+                    NavigateServices.navigateRouteOutlet(HomePage.route);
+                  },
+                ),
+                BottomBarIconButton(
+                  isSelected: _index == 1,
+                  icon: Icons.search_outlined,
+                  text: "Search",
+                  onTap: () {
+                    updateIndex(1);
+                    NavigateServices.navigateRouteOutlet(SearchPage.route);
+                  },
+                ),
+                BottomBarIconButton(
+                  isSelected: _index == 2,
+                  icon: Icons.favorite_rounded,
+                  text: "Playlists",
+                  onTap: () {
+                    updateIndex(2);
+                    NavigateServices.navigateRouteOutlet(PlaylistPage.route);
+                  },
+                )
+              ],
             ),
           ),
         ),

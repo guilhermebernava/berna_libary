@@ -20,7 +20,7 @@ class BottomBarIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       child: GestureDetector(
         onTap: () {
           HapticFeedback.lightImpact();
@@ -33,7 +33,7 @@ class BottomBarIconButton extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                size: 35,
+                size: 25,
                 color: isSelected ? AppColors.primary : AppColors.white,
               ),
               const SizedBox(

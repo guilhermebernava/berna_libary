@@ -6,6 +6,7 @@ class AppTheme {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.black,
     backgroundColor: AppColors.black,
+    canvasColor: Colors.transparent,
     colorScheme: const ColorScheme.dark(),
     appBarTheme: const AppBarTheme(
       color: Colors.transparent,
@@ -15,6 +16,7 @@ class AppTheme {
     brightness: Brightness.dark,
   );
   static final lightTheme = ThemeData(
+    canvasColor: Colors.transparent,
     scaffoldBackgroundColor: AppColors.white,
     colorScheme: const ColorScheme.light(primary: AppColors.black),
     backgroundColor: AppColors.white,

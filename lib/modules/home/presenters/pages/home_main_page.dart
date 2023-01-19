@@ -25,12 +25,19 @@ class _HomeMainPageState extends State<HomeMainPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SizedBox(
-        width: size.width,
-        height: size.height,
-        child: const RouterOutlet(),
+      body: Stack(
+        children: [
+          SizedBox(
+            width: size.width,
+            height: size.height,
+            child: const RouterOutlet(),
+          ),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: HomeBottomBar(),
+          ),
+        ],
       ),
-      bottomNavigationBar: const HomeBottomBar(),
     );
   }
 }

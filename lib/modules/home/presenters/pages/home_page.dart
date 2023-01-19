@@ -20,22 +20,36 @@ class HomePage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: HomeAppBar(
-        useCase: useCase,
-        size: size,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          HomePageContainerGrid(
-            size: size,
-            playlists: HomeMockData.playlists,
-          ),
-          HomeBigContainers(
-            size: size,
-            playlists: HomeMockData.containerPlaylists,
-          )
-        ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            HomeAppBar(
+              useCase: useCase,
+              size: size,
+            ),
+            HomePageContainerGrid(
+              size: size,
+              playlists: HomeMockData.playlists,
+            ),
+            HomeBigContainers(
+              size: size,
+              title: "My Playlists",
+              playlists: HomeMockData.containerPlaylists,
+            ),
+            HomeBigContainers(
+              size: size,
+              title: "My Playlists",
+              playlists: HomeMockData.containerPlaylists,
+            ),
+            HomeBigContainers(
+              size: size,
+              title: "My Playlists",
+              playlists: HomeMockData.containerPlaylists,
+            )
+          ],
+        ),
       ),
     );
   }
