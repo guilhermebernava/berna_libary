@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 class AnimationUseCase implements IAnimationUseCase {
   @override
   late final Animation<double> animation;
-
   @override
   late final AnimationController controller;
-
   @override
   late final Animation<Alignment> transformAnimation;
-
   @override
   late final AnimationController transformController;
 
@@ -63,7 +60,7 @@ class AnimationUseCase implements IAnimationUseCase {
   }
 
   @override
-  void playAnimation(bool isMounted, void Function() redirect) {
+  void playAnimation(bool isMounted, void Function() redirect) async {
     if (isMounted) {
       transformController.forward().then(
             (_) => controller.forward().then(

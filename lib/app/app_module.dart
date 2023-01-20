@@ -48,7 +48,8 @@ class AppModule extends Module {
         ),
         Bind(
           (i) => SplashUseCase(
-            routeTo: LoginModule.moduleRoute,
+            homeRoute: HomeModule.moduleRoute,
+            loginRoute: LoginModule.moduleRoute,
           ),
         ),
         Bind(

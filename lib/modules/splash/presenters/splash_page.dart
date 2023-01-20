@@ -33,6 +33,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void dispose() {
     super.dispose();
+    widget.useCase.dispose();
     animationUseCase.dispose();
   }
 
