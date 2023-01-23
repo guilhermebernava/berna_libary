@@ -1,8 +1,9 @@
 import 'package:berna_libary/modules/home/domain/use_cases/home_use_case.dart';
 import 'package:berna_libary/modules/home/presenters/pages/home_main_page.dart';
 import 'package:berna_libary/modules/home/presenters/pages/home_page.dart';
-import 'package:berna_libary/modules/home/presenters/pages/playlist_page.dart';
+import 'package:berna_libary/modules/home/presenters/pages/home_playlists_page.dart';
 import 'package:berna_libary/modules/home/presenters/pages/search_page.dart';
+import 'package:berna_libary/modules/playlist/playlist_module.dart';
 import 'package:berna_libary/modules/settings/settings_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -14,6 +15,7 @@ class HomeModule extends Module {
         Bind.singleton(
           (i) => HomeUseCase(
             settingsRoute: SettingsModule.moduleRoute,
+            playlistRoute: PlaylistModule.moduleRoute,
           ),
         )
       ];
@@ -35,8 +37,8 @@ class HomeModule extends Module {
               child: (_, __) => const SearchPage(),
             ),
             ChildRoute(
-              PlaylistPage.route,
-              child: (_, __) => const PlaylistPage(),
+              HomePlaylistsPage.route,
+              child: (_, __) => const HomePlaylistsPage(),
             ),
           ],
         )

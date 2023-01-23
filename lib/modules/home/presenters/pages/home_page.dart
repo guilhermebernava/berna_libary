@@ -46,20 +46,24 @@ class _HomePageState extends State<HomePage> {
                 size: size,
               ),
               HomePageContainerGrid(
+                useCase: widget.useCase,
                 size: size,
-                playlists: HomeMockData.playlists,
+                playlists: HomeMockData.containerPlaylists,
               ),
               HomeBigContainers(
                 size: size,
+                useCase: widget.useCase,
                 title: "My Playlists",
                 playlists: HomeMockData.containerPlaylists,
               ),
               HomeBigContainers(
                 size: size,
+                useCase: widget.useCase,
                 title: "My Playlists",
                 playlists: HomeMockData.containerPlaylists,
               ),
               HomeBigContainers(
+                useCase: widget.useCase,
                 size: size,
                 title: "My Playlists",
                 playlists: HomeMockData.containerPlaylists,

@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:berna_libary/commons/services/navigate_services.dart';
 import 'package:berna_libary/design/colors/app_colors.dart';
 import 'package:berna_libary/modules/home/presenters/pages/home_page.dart';
-import 'package:berna_libary/modules/home/presenters/pages/playlist_page.dart';
+import 'package:berna_libary/modules/home/presenters/pages/home_playlists_page.dart';
 import 'package:berna_libary/modules/home/presenters/pages/search_page.dart';
 import 'package:berna_libary/modules/home/presenters/widgets/home_main_page/bottom_bar_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
     if (Modular.to.path == "/home${SearchPage.route}") {
       updateIndex(1);
     }
-    if (Modular.to.path == "/home${PlaylistPage.route}") {
+    if (Modular.to.path == "/home${HomePlaylistsPage.route}") {
       updateIndex(2);
     }
   }
@@ -90,7 +90,8 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                   text: "Playlists",
                   onTap: () {
                     updateIndex(2);
-                    NavigateServices.navigateRouteOutlet(PlaylistPage.route);
+                    NavigateServices.navigateRouteOutlet(
+                        HomePlaylistsPage.route);
                   },
                 )
               ],

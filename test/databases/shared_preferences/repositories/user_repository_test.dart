@@ -10,7 +10,8 @@ void main() {
   final repo = UserRepository(mapper: mapper);
 
   setUp(() {
-    final json = mapper.toJson(CoreUser(email: "", name: "gui", uuid: ""));
+    final json = mapper
+        .toJson(CoreUser(email: "", name: "gui", uuid: "", userPlaylists: []));
     Map<String, Object> values = <String, Object>{'user': json};
     SharedPreferences.setMockInitialValues(values);
   });
@@ -33,8 +34,8 @@ void main() {
 
   group("INSERT", () {
     test('It should insert user', () async {
-      final result =
-          await repo.loginUser(CoreUser(email: "t", name: "t", uuid: ""));
+      final result = await repo.loginUser(
+          CoreUser(email: "t", name: "t", uuid: "", userPlaylists: []));
 
       expect(result.isRight(), true);
     });
@@ -42,8 +43,8 @@ void main() {
 
   group("DELETE", () {
     test('It should logout user', () async {
-      final result =
-          await repo.loginUser(CoreUser(email: "t", name: "t", uuid: ""));
+      final result = await repo.loginUser(
+          CoreUser(email: "t", name: "t", uuid: "", userPlaylists: []));
       expect(result.isRight(), true);
 
       final logout = await repo.logoutUser();

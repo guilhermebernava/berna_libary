@@ -1,5 +1,5 @@
 import 'package:berna_libary/commons/services/navigate_services.dart';
-import 'package:berna_libary/modules/home/domain/enums/e_playlist_type.dart';
+import 'package:berna_libary/commons/domain/enums/e_playlist_type.dart';
 
 class Playlist {
   String name;

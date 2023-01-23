@@ -12,11 +12,12 @@ void main() {
   setUp(() {
     //CORRECT
     when(() => useCase.login(email: "a@a.com", password: "123")).thenAnswer(
-      (_) async => Right(CoreUser(email: "a@a.com", name: "a", uuid: "")),
+      (_) async => Right(
+          CoreUser(email: "a@a.com", name: "a", uuid: "", userPlaylists: [])),
     );
     when(() => useCase.createUser(email: "a@a.com", password: "123"))
-        .thenAnswer((_) async =>
-            Right(CoreUser(email: "a@a.com", name: "a", uuid: "")));
+        .thenAnswer((_) async => Right(CoreUser(
+            email: "a@a.com", name: "a", uuid: "", userPlaylists: [])));
     when(() => useCase.resetPassword(email: "a@a.com"))
         .thenAnswer((_) async => const Right(null));
 

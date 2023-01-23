@@ -1,10 +1,10 @@
 import 'package:berna_libary/design/fonts/app_fonts.dart';
 import 'package:flutter/material.dart';
 
-class PlaylistPage extends StatelessWidget {
-  const PlaylistPage({super.key});
+class HomePlaylistsPage extends StatelessWidget {
+  const HomePlaylistsPage({super.key});
 
-  static const route = "/Playlist";
+  static const route = "/home-playlists";
 
   @override
   Widget build(BuildContext context) {

@@ -11,6 +11,7 @@ class UserMapper implements IUserMapper {
       email: map["email"],
       name: map["name"],
       uuid: map["uuid"],
+      userPlaylists: map["user_playlists"],
     );
   }
 
@@ -20,6 +21,7 @@ class UserMapper implements IUserMapper {
       "email": user.email,
       "name": user.name,
       "uuid": user.uuid,
+      "user_playlists": user.userPlaylists,
     });
   }
 }

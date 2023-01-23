@@ -6,6 +6,7 @@ import 'package:berna_libary/databases/shared_preferences/mappers/user_mapper.da
 import 'package:berna_libary/databases/shared_preferences/repositories/user_repository.dart';
 import 'package:berna_libary/modules/home/home_module.dart';
 import 'package:berna_libary/modules/login/login_module.dart';
+import 'package:berna_libary/modules/playlist/playlist_module.dart';
 import 'package:berna_libary/modules/recover_password/recover_password_module.dart';
 import 'package:berna_libary/modules/settings/settings_module.dart';
 import 'package:berna_libary/modules/sign_up/sign_up_module.dart';
@@ -90,6 +91,11 @@ class AppModule extends Module {
           SettingsModule.moduleRoute,
           module: SettingsModule(),
           transition: TransitionType.fadeIn,
-        )
+        ),
+        ModuleRoute(
+          PlaylistModule.moduleRoute,
+          module: PlaylistModule(),
+          transition: TransitionType.fadeIn,
+        ),
       ];
 }

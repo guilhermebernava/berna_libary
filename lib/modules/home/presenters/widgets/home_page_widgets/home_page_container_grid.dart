@@ -1,17 +1,18 @@
-import 'package:berna_libary/commons/services/navigate_services.dart';
-import 'package:berna_libary/modules/home/domain/entities/playlist.dart';
-import 'package:berna_libary/modules/home/presenters/pages/playlist_page.dart';
+import 'package:berna_libary/commons/domain/entities/core_playlist.dart';
+import 'package:berna_libary/modules/home/domain/interfaces/i_home_use_case.dart';
 import 'package:berna_libary/modules/home/presenters/widgets/home_page_widgets/home_page_container.dart';
 import 'package:flutter/material.dart';
 
 class HomePageContainerGrid extends StatelessWidget {
   final Size size;
-  final List<Playlist> playlists;
+  final List<CorePlaylist> playlists;
+  final IHomeUseCase useCase;
 
   const HomePageContainerGrid({
     super.key,
     required this.size,
     required this.playlists,
+    required this.useCase,
   });
 
   @override
@@ -31,9 +32,7 @@ class HomePageContainerGrid extends StatelessWidget {
           childAspectRatio: 3,
         ),
         itemBuilder: (_, index) => HomePageContainer(
-          onTap: () {
-            NavigateServices.navigateRouteOutlet(PlaylistPage.route);
-          },
+          onTap: () => useCase.redirectToPlaylist(playlists[index]),
           size: size,
           playlist: playlists[index],
         ),

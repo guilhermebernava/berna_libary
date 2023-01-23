@@ -1,71 +1,72 @@
+import 'package:berna_libary/commons/domain/entities/core_playlist.dart';
+import 'package:berna_libary/commons/domain/entities/music.dart';
+import 'package:berna_libary/commons/domain/enums/e_playlist_type.dart';
 import 'package:berna_libary/modules/home/design/home_images.dart';
-import 'package:berna_libary/modules/home/domain/entities/playlist.dart';
-import 'package:berna_libary/modules/home/presenters/pages/search_page.dart';
 
 class HomeMockData {
-  static final containerPlaylists = <Playlist>[
-    Playlist(
+  static final containerPlaylists = <CorePlaylist>[
+    CorePlaylist(
       image: HomeImages.lofi1,
+      name: "Testes",
+      author: "Testando",
+      id: '',
+      musics: [
+        Music(
+          image: HomeImages.lofi2,
+          name: "1",
+          album: "teste",
+          duration: "1:25",
+          author: "Bernava",
+          releaseDate: DateTime.now().add(
+            const Duration(days: 10),
+          ),
+        ),
+        Music(
+          image: HomeImages.lofi3,
+          name: "2",
+          album: "testando",
+          duration: "4:25",
+          author: "Bernava",
+          releaseDate: DateTime.now().add(
+            const Duration(days: 10),
+          ),
+        ),
+        Music(
+          image: HomeImages.lofi4,
+          name: "3",
+          album: "cleber",
+          duration: "8:25",
+          author: "Bernava",
+          releaseDate: DateTime.now().add(
+            const Duration(days: 10),
+          ),
+        ),
+      ],
+      type: EPlaylistType.music,
+    ),
+    CorePlaylist(
+      image: HomeImages.lofi2,
       name: "Chill Beats",
       author: "Cleber",
-      route: SearchPage.route,
+      id: '',
+      musics: [],
+      type: EPlaylistType.music,
     ),
-    Playlist(
-      image: HomeImages.lofi2,
-      name: "My Favorites",
-      author: "DGM ZZ",
-      route: SearchPage.route,
-    ),
-    Playlist(
+    CorePlaylist(
       image: HomeImages.lofi3,
-      name: "Relax and Study",
-      author: "Bernava",
-      route: SearchPage.route,
-    ),
-    Playlist(
-      image: HomeImages.lofi4,
-      name: "Vibes",
-      author: "ABC 0099",
-      route: SearchPage.route,
-    ),
-    Playlist(
-      image: HomeImages.lofi5,
-      name: "Lofi Beats",
-      author: "GUILHERME B",
-      route: SearchPage.route,
-    )
-  ];
-
-  static final playlists = <Playlist>[
-    Playlist(
-      image: HomeImages.likedSongs,
-      name: "Liked Songs",
-      route: SearchPage.route,
-    ),
-    Playlist(
-      image: HomeImages.lofi1,
       name: "Chill Beats",
-      route: SearchPage.route,
+      author: "Cleber",
+      id: '',
+      type: EPlaylistType.music,
+      musics: [],
     ),
-    Playlist(
-      image: HomeImages.lofi2,
-      name: "My Favorites",
-      route: SearchPage.route,
-    ),
-    Playlist(
-      image: HomeImages.lofi3,
-      name: "Relax and Study",
-      route: SearchPage.route,
-    ),
-    Playlist(
+    CorePlaylist(
       image: HomeImages.lofi4,
-      name: "Vibes",
-      route: SearchPage.route,
+      name: "Chill Beats",
+      author: "Cleber",
+      id: '',
+      musics: [],
+      type: EPlaylistType.music,
     ),
-    Playlist(
-      image: HomeImages.lofi5,
-      name: "Lofi Beats",
-      route: SearchPage.route,
-    )
   ];
 }

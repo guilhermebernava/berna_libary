@@ -1,11 +1,17 @@
+import 'package:berna_libary/commons/domain/entities/core_playlist.dart';
 import 'package:berna_libary/modules/home/domain/interfaces/i_home_use_case.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeUseCase implements IHomeUseCase {
   @override
   String settingsRoute;
+  @override
+  String playlistRoute;
 
-  HomeUseCase({required this.settingsRoute});
+  HomeUseCase({
+    required this.settingsRoute,
+    required this.playlistRoute,
+  });
 
   @override
   void redirectToSettings() {
@@ -25,5 +31,10 @@ class HomeUseCase implements IHomeUseCase {
     }
 
     return "Good something";
+  }
+
+  @override
+  void redirectToPlaylist(CorePlaylist corePlaylist) {
+    Modular.to.pushNamed(playlistRoute, arguments: corePlaylist);
   }
 }

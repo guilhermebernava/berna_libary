@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final mapper = UserMapper();
-  final user = CoreUser(email: "teste", name: "", uuid: "");
+  final user = CoreUser(email: "teste", name: "", uuid: "", userPlaylists: []);
 
   test('It should enconde to JSON', () {
     final json = mapper.toJson(user);

@@ -9,8 +9,8 @@ void main() {
   blocTest<AppUserBloc, AppUserStates>(
     'emits [LoggedUser] when have an success with LoginUser event',
     build: () => AppUserBloc(),
-    act: (bloc) =>
-        bloc.add(LoginUser(user: CoreUser(email: "", name: "", uuid: ""))),
+    act: (bloc) => bloc.add(LoginUser(
+        user: CoreUser(email: "", name: "", uuid: "", userPlaylists: []))),
     expect: () => [isA<LoggedUser>()],
   );
 

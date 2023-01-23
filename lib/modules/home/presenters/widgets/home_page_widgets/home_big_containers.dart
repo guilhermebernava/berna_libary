@@ -1,18 +1,21 @@
+import 'package:berna_libary/commons/domain/entities/core_playlist.dart';
 import 'package:berna_libary/modules/home/design/app_home_fonts.dart';
-import 'package:berna_libary/modules/home/domain/entities/playlist.dart';
+import 'package:berna_libary/modules/home/domain/interfaces/i_home_use_case.dart';
 import 'package:berna_libary/modules/home/presenters/widgets/home_page_widgets/home_big_container/home_big_container.dart';
 import 'package:flutter/material.dart';
 
 class HomeBigContainers extends StatelessWidget {
-  final List<Playlist> playlists;
+  final List<CorePlaylist> playlists;
   final String title;
   final Size size;
+  final IHomeUseCase useCase;
 
   const HomeBigContainers({
     super.key,
     required this.playlists,
     required this.size,
     required this.title,
+    required this.useCase,
   });
 
   @override
@@ -39,6 +42,7 @@ class HomeBigContainers extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: playlists.length,
               itemBuilder: (context, index) => HomeBigContainer(
+                onTap: () => useCase.redirectToPlaylist(playlists[index]),
                 key: ValueKey(playlists[index].image),
                 size: size,
                 playlist: playlists[index],

@@ -1,13 +1,13 @@
+import 'package:berna_libary/commons/domain/entities/core_playlist.dart';
 import 'package:berna_libary/commons/presenters/widgets/core_button_opacity/core_button_opacity.dart';
 import 'package:berna_libary/design/colors/app_colors.dart';
 import 'package:berna_libary/modules/home/design/app_home_fonts.dart';
-import 'package:berna_libary/modules/home/domain/entities/playlist.dart';
 import 'package:flutter/material.dart';
 
 class HomePageContainer extends StatelessWidget {
   final VoidCallback onTap;
   final Size size;
-  final Playlist playlist;
+  final CorePlaylist playlist;
 
   const HomePageContainer({
     super.key,
