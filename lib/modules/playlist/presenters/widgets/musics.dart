@@ -1,6 +1,11 @@
 import 'package:berna_libary/commons/domain/entities/core_playlist.dart';
+import 'package:berna_libary/modules/playlist/blocs/music_bloc/music_bloc.dart';
+import 'package:berna_libary/modules/playlist/blocs/music_bloc/music_events.dart';
+import 'package:berna_libary/modules/playlist/blocs/music_bloc/music_states.dart';
 import 'package:berna_libary/modules/playlist/presenters/widgets/music_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class Musics extends StatefulWidget {
   final Size size;
@@ -16,8 +21,8 @@ class Musics extends StatefulWidget {
 }
 
 class _MusicsState extends State<Musics> {
+  final musicBloc = Modular.get<MusicBloc>();
   int? selected;
-  bool paused = false;
 
   void changeSelected(int index) {
     if (mounted) {
@@ -28,37 +33,39 @@ class _MusicsState extends State<Musics> {
   }
 
   void changePaused(int index) {
-    if (paused) {
-      setState(() {
-        paused = false;
-      });
+    if (mounted && index == selected && musicBloc.state is PlayingMusic) {
+      musicBloc.add(PauseMusic());
       return;
     }
+
     if (mounted && index == selected) {
-      setState(() {
-        paused = true;
-      });
+      musicBloc.add(PlayMusic());
       return;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: widget.playlist.musics.length,
-      itemBuilder: (_, index) => MusicRow(
-        isPaused: paused,
-        onTap: () {
-          changeSelected(index);
-          changePaused(index);
-          //TODO dar play na musica
-        },
-        isSelected: index == selected,
-        key: UniqueKey(),
-        music: widget.playlist.musics[index],
-        size: widget.size,
-      ),
+    return BlocBuilder(
+      bloc: musicBloc,
+      builder: (_, state) {
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: widget.playlist.musics.length,
+          itemBuilder: (_, index) => MusicRow(
+            isPaused: state is PlayingMusic,
+            onTap: () {
+              changeSelected(index);
+              changePaused(index);
+              //TODO dar play na musica
+            },
+            isSelected: index == selected,
+            key: UniqueKey(),
+            music: widget.playlist.musics[index],
+            size: widget.size,
+          ),
+        );
+      },
     );
   }
 }
