@@ -17,6 +17,7 @@ class Musics extends StatefulWidget {
 
 class _MusicsState extends State<Musics> {
   int? selected;
+  bool paused = false;
 
   void changeSelected(int index) {
     if (mounted) {
@@ -26,14 +27,31 @@ class _MusicsState extends State<Musics> {
     }
   }
 
+  void changePaused(int index) {
+    if (paused) {
+      setState(() {
+        paused = false;
+      });
+      return;
+    }
+    if (mounted && index == selected) {
+      setState(() {
+        paused = true;
+      });
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: widget.playlist.musics.length,
       itemBuilder: (_, index) => MusicRow(
+        isPaused: paused,
         onTap: () {
           changeSelected(index);
+          changePaused(index);
           //TODO dar play na musica
         },
         isSelected: index == selected,

@@ -13,7 +13,17 @@ class AppUserBloc extends Bloc<AppUserEvents, AppUserStates> {
   AppUserBloc() : super(UnloggedUser()) {
     on<LoginUser>((event, emit) async {
       user = event.user;
-      userRepo.loginUser(event.user);
+      final result = await userRepo.loginUser(event.user);
+
+      if (result.isLeft()) {
+        return emit(
+          AppUserError(
+            error: result.left().error,
+            message: result.left().repo,
+          ),
+        );
+      }
+
       emit(LoggedUser(user: event.user));
     });
 

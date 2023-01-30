@@ -7,6 +7,7 @@ class MusicRow extends StatelessWidget {
   final Music music;
   final Size size;
   final bool isSelected;
+  final bool isPaused;
   final VoidCallback onTap;
 
   const MusicRow({
@@ -15,6 +16,7 @@ class MusicRow extends StatelessWidget {
     required this.size,
     required this.onTap,
     required this.isSelected,
+    required this.isPaused,
   });
 
   @override
@@ -27,18 +29,42 @@ class MusicRow extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                music.image,
-                width: 60,
-                height: 60,
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    music.image,
+                    width: 60,
+                    height: 60,
+                  ),
+                  Container(
+                    width: 60,
+                    height: 60,
+                    color: isSelected
+                        ? AppColors.white.withOpacity(0.3)
+                        : Colors.transparent,
+                    child: isSelected
+                        ? isPaused
+                            ? const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  color: AppColors.primary,
+                                  size: 30,
+                                ),
+                              )
+                            : const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: Icon(
+                                  Icons.pause,
+                                  color: AppColors.primary,
+                                  size: 30,
+                                ),
+                              )
+                        : Container(),
+                  ),
+                ],
               ),
-              isSelected
-                  ? const Icon(
-                      Icons.music_note,
-                      color: AppColors.primary,
-                      size: 30,
-                    )
-                  : Container(),
               SizedBox(
                 width: size.width * 0.52,
                 child: Column(
@@ -60,7 +86,7 @@ class MusicRow extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(
                   onTap: () {
                     //TODO adicionar tela de opções
