@@ -44,7 +44,7 @@ class MusicRow extends StatelessWidget {
                         ? AppColors.white.withOpacity(0.3)
                         : Colors.transparent,
                     child: isSelected
-                        ? isPaused
+                        ? isPaused == false
                             ? const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 5),
                                 child: Icon(

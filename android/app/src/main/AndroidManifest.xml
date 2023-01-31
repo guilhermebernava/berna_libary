@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.berna_libary">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="berna_libary"
         android:name="${applicationName}"
