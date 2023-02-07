@@ -1,26 +1,25 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:berna_libary/design/colors/app_colors.dart';
 import 'package:berna_libary/modules/playlist/blocs/music_bloc/music_bloc.dart';
-import 'package:berna_libary/modules/playlist/presenters/pages/music_page.dart';
 import 'package:berna_libary/modules/playlist/presenters/widgets/play_music_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class MusicPlayerWidget extends StatefulWidget {
-  final Size size;
+class MusicPage extends StatefulWidget {
   final AudioPlayer audioPlayer;
 
-  const MusicPlayerWidget({
+  const MusicPage({
     super.key,
-    required this.size,
     required this.audioPlayer,
   });
 
+  static const route = "/music-page";
+
   @override
-  State<MusicPlayerWidget> createState() => _MusicPlayerWidgetState();
+  State<MusicPage> createState() => _MusicPageState();
 }
 
-class _MusicPlayerWidgetState extends State<MusicPlayerWidget> {
+class _MusicPageState extends State<MusicPage> {
   final musicBloc = Modular.get<MusicBloc>();
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
@@ -50,39 +49,34 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Modular.to.pushNamed(
-        ".${MusicPage.route}",
-        arguments: widget.audioPlayer,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-          height: 75,
-          decoration: BoxDecoration(
-            color: AppColors.grey,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    musicBloc.music?.image ?? "",
-                    width: 50,
-                    height: 50,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                      color: AppColors.white,
-                      width: 50,
-                      height: 50,
-                    ),
-                  ),
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 30,
+          vertical: 30,
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                musicBloc.music?.image ?? "",
+                height: size.height * 0.45,
+                fit: BoxFit.fill,
+                width: size.width,
+                errorBuilder: (context, error, stackTrace) => Container(
+                  color: AppColors.white,
+                  height: size.height * 0.45,
+                  width: size.width,
                 ),
               ),
-              SizedBox(
-                width: widget.size.width * 0.55,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: SizedBox(
+                width: size.width,
                 child: Slider(
                   activeColor: AppColors.primary,
                   min: 0,
@@ -94,12 +88,23 @@ class _MusicPlayerWidgetState extends State<MusicPlayerWidget> {
                   },
                 ),
               ),
-              PlayMusicButton(
-                onTap: () {},
-                audioPlayer: widget.audioPlayer,
-              ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  duration.inSeconds.toString(),
+                ),
+                Text(
+                  position.inSeconds.toString(),
+                )
+              ],
+            ),
+            PlayMusicButton(
+              onTap: () {},
+              audioPlayer: widget.audioPlayer,
+            )
+          ],
         ),
       ),
     );
