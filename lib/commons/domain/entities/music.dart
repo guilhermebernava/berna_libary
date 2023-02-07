@@ -5,6 +5,7 @@ class Music {
   final DateTime releaseDate;
   final String duration;
   final String image;
+  final String asset;
 
   Music({
     required this.image,
@@ -13,5 +14,6 @@ class Music {
     required this.author,
     required this.duration,
     required this.releaseDate,
+    required this.asset,
   });
 }

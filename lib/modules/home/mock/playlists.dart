@@ -17,6 +17,7 @@ class HomeMockData {
           album: "teste",
           duration: "1:25",
           author: "Bernava",
+          asset: "musics/teste.mp3",
           releaseDate: DateTime.now().add(
             const Duration(days: 10),
           ),
@@ -27,6 +28,7 @@ class HomeMockData {
           album: "testando",
           duration: "4:25",
           author: "Bernava",
+          asset: "musics/teste.mp3",
           releaseDate: DateTime.now().add(
             const Duration(days: 10),
           ),
@@ -37,6 +39,7 @@ class HomeMockData {
           album: "cleber",
           duration: "8:25",
           author: "Bernava",
+          asset: "musics/teste.mp3",
           releaseDate: DateTime.now().add(
             const Duration(days: 10),
           ),

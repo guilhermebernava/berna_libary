@@ -1,7 +1,13 @@
+import 'package:berna_libary/commons/domain/entities/music.dart';
+
 abstract class MusicEvents {}
 
 class PlayMusic implements MusicEvents {
-  //TODO adicionar musica
+  final Music music;
+
+  PlayMusic({
+    required this.music,
+  });
 }
 
 class PauseMusic implements MusicEvents {}

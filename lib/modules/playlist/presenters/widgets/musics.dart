@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:berna_libary/commons/domain/entities/core_playlist.dart';
 import 'package:berna_libary/modules/playlist/blocs/music_bloc/music_bloc.dart';
 import 'package:berna_libary/modules/playlist/blocs/music_bloc/music_events.dart';
@@ -10,10 +11,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 class Musics extends StatefulWidget {
   final Size size;
   final CorePlaylist playlist;
+  final AudioPlayer audioPlayer;
+
   const Musics({
     super.key,
     required this.size,
     required this.playlist,
+    required this.audioPlayer,
   });
 
   @override
@@ -32,14 +36,18 @@ class _MusicsState extends State<Musics> {
     }
   }
 
-  void changePaused(int index) {
+  Future<void> changePaused(int index) async {
     if (mounted && index == selected && musicBloc.state is PlayingMusic) {
       musicBloc.add(PauseMusic());
+      await widget.audioPlayer.pause();
       return;
     }
 
     if (mounted && index == selected) {
-      musicBloc.add(PlayMusic());
+      musicBloc.add(PlayMusic(music: widget.playlist.musics[index]));
+      await widget.audioPlayer.play(
+        AssetSource(widget.playlist.musics[index].asset),
+      );
       return;
     }
   }
@@ -54,10 +62,9 @@ class _MusicsState extends State<Musics> {
           itemCount: widget.playlist.musics.length,
           itemBuilder: (_, index) => MusicRow(
             isPaused: state is PlayingMusic,
-            onTap: () {
+            onTap: () async {
               changeSelected(index);
-              changePaused(index);
-              //TODO dar play na musica
+              await changePaused(index);
             },
             isSelected: index == selected,
             key: UniqueKey(),

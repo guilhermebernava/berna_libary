@@ -68,10 +68,11 @@ class AuthUseCase implements IAuthUseCase {
       }
       //TODO adicionar playlists
       final user = CoreUser(
-          email: result.user!.email,
-          name: result.user!.displayName,
-          uuid: result.user!.uid,
-          userPlaylists: []);
+        email: result.user!.email,
+        name: result.user!.displayName,
+        uuid: result.user!.uid,
+        userPlaylists: [],
+      );
 
       return Right(user);
     } catch (e) {

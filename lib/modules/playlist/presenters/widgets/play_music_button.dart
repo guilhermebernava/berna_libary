@@ -26,40 +26,33 @@ class _PlayMusicButtonState extends State<PlayMusicButton> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO criar animacao
     return BlocBuilder(
       bloc: musicBloc,
       builder: (_, state) {
-        if (state is PausedMusic) {
-          return GestureDetector(
-            onTap: () async {
-              await widget.audioPlayer.play(
-                AssetSource("musics/teste.mp3"),
-              );
-              musicBloc.add(PlayMusic());
-            },
-            child: const Icon(
-              Icons.play_arrow,
-              size: 50,
-              color: AppColors.white,
-            ),
-          );
-        }
-
-        if (state is PlayingMusic) {
-          return GestureDetector(
-            onTap: () async {
+        return GestureDetector(
+          onTap: () async {
+            if (state is PausedMusic && musicBloc.music != null) {
+              await widget.audioPlayer
+                  .play(AssetSource(musicBloc.music!.asset));
+              musicBloc.add(PlayMusic(music: musicBloc.music!));
+            }
+            if (state is PlayingMusic) {
               await widget.audioPlayer.pause();
               musicBloc.add(PauseMusic());
-            },
-            child: const Icon(
-              Icons.pause,
-              size: 50,
-              color: AppColors.white,
-            ),
-          );
-        }
-        return Container();
+            }
+          },
+          child: state is PausedMusic
+              ? const Icon(
+                  Icons.play_arrow,
+                  size: 50,
+                  color: AppColors.white,
+                )
+              : const Icon(
+                  Icons.pause,
+                  size: 50,
+                  color: AppColors.white,
+                ),
+        );
       },
     );
   }
